@@ -9,10 +9,33 @@ namespace Tasks_Management.Models
 {
     internal class Board : IBoard
     {
-        public IList<ITask> Tasks => throw new NotImplementedException();
+        private string name;
+        private IList<ITask> tasks;
+        private IList<IActiveHistory> history;
 
-        public IList<IActiveHistory> History => throw new NotImplementedException();
+        public Board(string name)
+        {
+            if (IsNameValid(name))
+            {
+                this.name = name;
+                tasks = new List<ITask>();
+                history = new List<IActiveHistory>();
+            }
+            else
+            {
+                throw new ArgumentException("Invalid board name.");
+            }
+        }
 
-        public string Name => throw new NotImplementedException();
+        public IList<ITask> Tasks => tasks;
+
+        public IList<IActiveHistory> History => history;
+
+        public string Name => name;
+
+        private bool IsNameValid(string name)
+        {
+            return !string.IsNullOrEmpty(name) && name.Length >= 5 && name.Length <= 10;
+        }
     }
 }
