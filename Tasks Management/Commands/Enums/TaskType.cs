@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP_Teamwork.Enums
+namespace Tasks_Management.Commands.Enums
 {
      public enum TaskType
     {

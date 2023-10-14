@@ -9,6 +9,11 @@ namespace Tasks_Management.Models
 {
     internal class Comment : IComment
     {
+
+        public Comment(string content, string task)
+        {
+            
+        }
         public string Author => throw new NotImplementedException();
 
         public string CommentText => throw new NotImplementedException();

@@ -7,13 +7,15 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    internal class Feedback : Task
+    internal class Feedback : Task,IFeedBack
     {
         public Feedback(string Title, string Description, Enum Status,
-            IList<IComment> Comments, IList<IActiveHistory> History) 
+            IList<IComment> Comments, IList<IActiveHistory> History , int rating) 
             : base(Title, Description, Status, Comments, History)
         {
 
         }
+
+        public int Rating => throw new NotImplementedException();
     }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tasks_Management.Commands.Enums
+namespace Tasks_Management.Models.Contracts
 {
-    public enum BugStatus
+    public interface IFeedBack
     {
-        Active,
-        Fixed
+        int Rating { get; }
     }
 }
