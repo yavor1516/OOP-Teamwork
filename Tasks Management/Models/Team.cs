@@ -9,6 +9,11 @@ namespace Tasks_Management.Models
 {
     internal class Team : ITeam
     {
+
+        public Team(string Name)
+        {
+            
+        }
         public IList<IMember> Members => throw new NotImplementedException();
 
         public IList<IBoard> Boards => throw new NotImplementedException();
