@@ -11,21 +11,63 @@ namespace Tasks_Management.Models
     {
         public int UniqueID => throw new NotImplementedException();
 
-        public Task(string Title,string Description, Enum Status,
-            IList<IComment> Comments,IList<IActiveHistory> History)
+        public const int NameMinLength = 10;
+        public const int NameMaxLength = 50;
+        public const string InvalidNameError = "Name must be between 10 and 50 characters";
+        public const int DescriptionMinLength = 10;
+        public const int DescriptionMaxLength = 500;
+        public const string InvalidDescriptionError = "Description must be between 10 and 500 characters";
+        public const string CommentsHeader = "--COMMENTS--";
+        public const string NoCommentsHeader = "--NO COMMENTS--";
+
+
+        private int id;
+        private string name;
+        private string description;
+        private List<Comment> comments;
+
+
+        public Task(int id, string Title,string Description)
         {
             this.Title = Title;
             this.Description = Description;
             this.Status = Status;
-            this.Comments = Comments;
-            this.History = History;
+            this.Comments = new List<Comment>();
+            
 
         }
-        public virtual string Title { get; }
+        public int Id
+        {
+            get => id;
+            set => this.id = value;
+        }
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (value.Length > NameMinLength && value.Length < NameMaxLength)
+                {
+                    this.name = value;
+                }
+            }
+        }
+        public string Description
+        {
+            get => description;
+            set
+            {
+                if (value.Length >  DescriptionMinLength && value.Length < DescriptionMaxLength)
+                { 
+                    this.description = value;
+                }
+            }
+        }
+        
 
-        public virtual string Description { get; }
 
-        public virtual Enum Status { get; }
+        }
+        
 
         public  IList<IComment> Comments { get; }
 
