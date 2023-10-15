@@ -53,7 +53,7 @@ namespace Tasks_Management.Commands
 
         public string Execute()
         {
-            throw new NotImplementedException();
+            return this.ExecuteCommand();
         }
     }
 }
