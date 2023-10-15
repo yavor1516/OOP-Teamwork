@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Tasks_Management.Models.Contracts
 {
-    public interface IMember :IHasName
+    public interface IMember 
     {
+        string FirstName { get; }
         string LastName { get; }
         IList<ITask> Tasks { get; }
         IList<IActiveHistory> History { get; }

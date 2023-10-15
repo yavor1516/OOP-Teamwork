@@ -17,7 +17,7 @@ namespace Tasks_Management.Core.Contracts
 
         IList<IBoard> Boards { get; }
 
-        public IMember CreateMember(string name,string lastName);
+        public IMember CreateMember(string firstName, string lastName);
 
         public ITeam CreateTeam(string name);
 
@@ -28,12 +28,12 @@ namespace Tasks_Management.Core.Contracts
 
         void AddBoard (IBoard board);
 
-        public bool MemberExist (string name);
+        public bool MemberExist (string firstName, string lastName);
         public bool TeamExist (string name);
 
         public bool BoardExist (string name);
 
-        IMember GetMember (string name);
+        IMember GetMember (string firstName, string lastName);
 
         ITeam GetTeam (string name);
 

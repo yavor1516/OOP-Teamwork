@@ -20,7 +20,7 @@ namespace Tasks_Management.Commands
         protected override string ExecuteCommand()
         {
             //TODO
-            if (this.CommandParameters.Count < 2)
+            if (this.CommandParameters.Count != 2)
             {
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: 2, Received: {this.CommandParameters.Count}");
             }
@@ -33,14 +33,15 @@ namespace Tasks_Management.Commands
         public string RegisterUser(string firstName,string lastName)
         {
             //todo
-            if (this.Repository.MemberExist(firstName))
+            if (this.Repository.MemberExist(firstName, lastName ))
             {
-                string errorMessage = $"User {firstName} already exist. Choose a different username!";
+                
+                string errorMessage = $"User {firstName} {lastName} already exist. Choose a different username!";
                 throw new AuthorizationException(errorMessage);
             }
             IMember member = this.Repository.CreateMember(firstName, lastName);
             this.Repository.AddMember(member);
-            return string.Format("User {0} registered successfully!", firstName);
+            return string.Format("User {0} {1} registered successfully!", firstName, lastName);
         }
     }
 }

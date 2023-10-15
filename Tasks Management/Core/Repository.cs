@@ -29,9 +29,9 @@ namespace Tasks_Management.Core
 
       
 
-        public IMember CreateMember(string name, string lastName)
+        public IMember CreateMember(string firstName, string lastName)
         {
-          return new Member(name,lastName);
+          return new Member(firstName,lastName);
         }
 
  
@@ -41,16 +41,16 @@ namespace Tasks_Management.Core
             return new Team(name);
         }
 
-        public IMember GetMember(string name)
+        public IMember GetMember(string firstName, string lastName)
         {
            foreach(IMember member in this.members)
             {
-                if(member.Name.Equals(name,StringComparison.InvariantCultureIgnoreCase)) 
+                if(member.FirstName.Equals(firstName,StringComparison.InvariantCultureIgnoreCase) && member.LastName.Equals(lastName, StringComparison.InvariantCultureIgnoreCase)) 
                 {
                     return member;
                 }
             }
-            throw new ArgumentException($"There is no member with name: {name}!");
+            throw new ArgumentException($"There is no member with name: {firstName} {lastName}!");
         }
 
         public ITeam GetTeam(string name)
@@ -65,15 +65,15 @@ namespace Tasks_Management.Core
             throw new ArgumentException($"There is no team with name: {name}!");
         }
 
-        public bool MemberExist(string name)
+        public bool MemberExist(string firstName, string lastName)
         {
             bool result = false;
             foreach (IMember member in this.members)
             {
-                if(member.Name.Equals(name,StringComparison.InvariantCultureIgnoreCase))
+
+                if (member.FirstName.Equals(firstName, StringComparison.InvariantCultureIgnoreCase) && member.LastName.Equals(lastName, StringComparison.InvariantCultureIgnoreCase))
                 {
                     result = true;
-                    break;
                 }
             }
             return result;

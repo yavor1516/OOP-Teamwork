@@ -9,17 +9,18 @@ namespace Tasks_Management.Models
 {
     internal class Member : IMember
     {
-        private string name;
+        private string firstName;
         private string lastName;
         private IList<ITask> tasks;
         private IList<IActiveHistory> history;
 
-        public Member(string name, string lastName)
+        public Member(string firstName, string lastName)
         {
             //ToDO
-            if (IsNameValid(name))
+            if (IsNameValid(firstName) && IsLastNameValid(lastName))
             {
-                this.name = name;
+                this.firstName = firstName;
+                this.lastName = lastName;
                 tasks = new List<ITask>();
                 history = new List<IActiveHistory>();
             }
@@ -34,14 +35,17 @@ namespace Tasks_Management.Models
 
         public IList<IActiveHistory> History => history;
 
-        public string Name => name;
+        public string FirstName => firstName;
 
         public string LastName => lastName;
 
 
-        private bool IsNameValid(string name)
+        private bool IsNameValid(string firstName)
         {
-            return !string.IsNullOrEmpty(name) && name.Length >= 5 && name.Length <= 15;
+            return !string.IsNullOrEmpty(firstName) && firstName.Length >= 5 && firstName.Length <= 15;
+        } private bool IsLastNameValid(string lastName)
+        {
+            return !string.IsNullOrEmpty(lastName) && lastName.Length >= 5 && lastName.Length <= 15;
         } 
     }
 }

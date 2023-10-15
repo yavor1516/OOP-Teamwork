@@ -30,7 +30,8 @@ namespace Tasks_Management.Commands
             StringBuilder sb = new StringBuilder();
             foreach (IMember member in this.Repository.Members)
             {
-                sb.AppendLine(string.Format("{0}", member.Name.ToString()));
+                sb.AppendLine(string.Format("{0}", member.FirstName.ToString()));
+                sb.AppendLine(string.Format("{0}", member.LastName.ToString()));
               
             }
 
