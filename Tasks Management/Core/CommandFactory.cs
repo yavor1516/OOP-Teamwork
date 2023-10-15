@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Text.RegularExpressions;
 using Tasks_Management.Commands;
 using Tasks_Management.Commands.Contracts;
@@ -33,8 +33,10 @@ namespace Tasks_Management.Core
                     return new ShowUsersCommand(commandParameters,repository);
                 case CommandType.ShowUserActivity:
                     throw new NotImplementedException();
-                case CommandType.CreateNewItem: 
-                    throw new NotImplementedException();
+                case CommandType.CreateNewTeam: 
+                    return new CreateNewTeamCommand(commandParameters, repository);
+                case CommandType.ShowAllTeams:
+                    return new ShowAllTeamsCommand(commandParameters,repository);
                 case CommandType.ShowTeamActivity:
                     throw new NotImplementedException();
                 case CommandType.AddUserToTeam:
