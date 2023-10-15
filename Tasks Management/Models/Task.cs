@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Tasks_Management.Commands.Enums;
 using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
@@ -22,17 +19,17 @@ namespace Tasks_Management.Models
 
 
         private int id;
-        private string name;
+        private string title;
         private string description;
         private List<Comment> comments;
 
 
-        public Task(int id, string Title,string Description)
+        public Task(int id, string Title,string Description , Status status)
         {
             this.Title = Title;
             this.Description = Description;
-            this.Status = Status;
-            this.Comments = new List<Comment>();
+            this.Status = status;
+           
             
 
         }
@@ -41,14 +38,14 @@ namespace Tasks_Management.Models
             get => id;
             set => this.id = value;
         }
-        public string Name
+        public string Title
         {
-            get => name;
+            get => title;
             set
             {
                 if (value.Length > NameMinLength && value.Length < NameMaxLength)
                 {
-                    this.name = value;
+                    this.title = value;
                 }
             }
         }
@@ -63,15 +60,16 @@ namespace Tasks_Management.Models
                 }
             }
         }
-        
 
 
-        }
-        
+        public IList<IComment> Comments => throw new NotImplementedException();
 
-        public  IList<IComment> Comments { get; }
+        public IList<IActiveHistory> History => throw new NotImplementedException();
 
-        public  IList<IActiveHistory> History { get; } 
-
+        public Status Status { get; }
     }
+        
+
+   
+    
 }
