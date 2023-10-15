@@ -44,7 +44,7 @@ namespace Tasks_Management.Core
                 case CommandType.ShowAllTeamUsers:
                     throw new NotImplementedException();
                 case CommandType.CreateTeamBoard:
-                    throw new NotImplementedException();
+                    return new CreateTeamBoardCommand(commandParameters, repository);
                 case CommandType.ShowAllTeamBoards:
                     throw new NotImplementedException();
                 case CommandType.ShowBoardActivity:
