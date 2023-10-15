@@ -10,11 +10,13 @@ namespace Tasks_Management.Models
     internal class Member : IMember
     {
         private string name;
+        private string lastName;
         private IList<ITask> tasks;
         private IList<IActiveHistory> history;
 
-        public Member(string name)
+        public Member(string name, string lastName)
         {
+            //ToDO
             if (IsNameValid(name))
             {
                 this.name = name;
@@ -25,6 +27,7 @@ namespace Tasks_Management.Models
             {
                 throw new ArgumentException("Invalid member name.");
             }
+        
         }
 
         public IList<ITask> Tasks => tasks;
@@ -32,6 +35,9 @@ namespace Tasks_Management.Models
         public IList<IActiveHistory> History => history;
 
         public string Name => name;
+
+        public string LastName => lastName;
+
 
         private bool IsNameValid(string name)
         {

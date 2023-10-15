@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dealership.Exceptions
+namespace Tasks_Management.Exceptions
 {
     public class EntityNotFoundException : ApplicationException
     {

@@ -10,9 +10,9 @@ namespace Tasks_Management.Models
 {
     internal class Story : Task ,IStory
     {
-        public Story(string Title, string Description, Enum Status,
+        public Story(int id,string Title, string Description, Status Status,
             IList<IComment> Comments, IList<IActiveHistory> History,Priority priority,Size size,IMember assignee) 
-            : base(Title, Description, Status, Comments, History)
+            : base(id,Title, Description, Status, Comments, History)
         {
 
         }

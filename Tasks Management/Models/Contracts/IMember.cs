@@ -8,6 +8,7 @@ namespace Tasks_Management.Models.Contracts
 {
     public interface IMember :IHasName
     {
+        string LastName { get; }
         IList<ITask> Tasks { get; }
         IList<IActiveHistory> History { get; }
     }

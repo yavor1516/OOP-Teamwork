@@ -29,9 +29,9 @@ namespace Tasks_Management.Core
 
       
 
-        public IMember CreateMember(string name)
+        public IMember CreateMember(string name, string lastName)
         {
-          return new Member(name);
+          return new Member(name,lastName);
         }
 
  
@@ -102,19 +102,19 @@ namespace Tasks_Management.Core
             return result;
         }
 
-        public IBug CreateBug(string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,IList<string> steps,Priority priority,Severity severity,Status status,IMember assignee)
+        public IBug CreateBug(int id,string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,IList<string> steps,Priority priority,Severity severity,Status status,IMember assignee)
         {
-            return new Bug(Title, Description, Status, Comments, History,steps,priority,severity,status,assignee);
+            return new Bug(id,Title, Description, Status, Comments, History,steps,priority,severity,status,assignee);
         }
 
-        public IStory CreateStory(string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,Priority priority,Size size,IMember assignee)
+        public IStory CreateStory(int id,string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,Priority priority,Size size,IMember assignee)
         {
-            return new Story(Title, Description, Status, Comments, History,priority,size,assignee);
+            return new Story(id,Title, Description, Status, Comments, History,priority,size,assignee);
         }
 
-        public IFeedBack CreateFeedBack(string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History , int Rating)
+        public IFeedBack CreateFeedBack(int id, string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History , int Rating)
         {
-            return new Feedback(Title, Description,Status, Comments, History, Rating);
+            return new Feedback(id, Title, Description,Status, Comments, History, Rating);
         }
 
         public IBoard CreateBoard(string name)

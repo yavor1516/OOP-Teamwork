@@ -1,5 +1,4 @@
-﻿using System;
-using Tasks_Management.Commands.Enums;
+﻿using Tasks_Management.Commands.Enums;
 using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
@@ -24,7 +23,7 @@ namespace Tasks_Management.Models
         private List<Comment> comments;
 
 
-        public Task(int id, string Title,string Description , Status status)
+        public Task(int id, string Title,string Description , Status status ,IList<IComment> Comments, IList<IActiveHistory> History)
         {
             this.Title = Title;
             this.Description = Description;

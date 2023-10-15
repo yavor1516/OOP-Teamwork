@@ -2,6 +2,7 @@
 using System.Globalization;
 using Tasks_Management.Commands.Contracts;
 using Tasks_Management.Core.Contracts;
+using Tasks_Management.Exceptions;
 
 namespace Tasks_Management.Commands
 {
@@ -53,7 +54,7 @@ namespace Tasks_Management.Commands
 
         public string Execute()
         {
-            throw new NotImplementedException();
+            return this.ExecuteCommand();
         }
     }
 }

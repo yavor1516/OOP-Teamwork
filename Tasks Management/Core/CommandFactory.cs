@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Tasks_Management.Commands;
 using Tasks_Management.Commands.Contracts;
 using Tasks_Management.Commands.Enums;
 using Tasks_Management.Core.Contracts;
@@ -27,9 +28,9 @@ namespace Tasks_Management.Core
             switch (commandType)
             {
                 case CommandType.RegisterUser:
-                    throw new NotImplementedException();
+                    return new RegisterUserCommand(commandParameters,repository);
                 case CommandType.ShowUsers:
-                    throw new NotImplementedException();
+                    return new ShowUsersCommand(commandParameters,repository);
                 case CommandType.ShowUserActivity:
                     throw new NotImplementedException();
                 case CommandType.CreateNewItem: 

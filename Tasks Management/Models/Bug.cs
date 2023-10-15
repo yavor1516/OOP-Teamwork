@@ -1,14 +1,14 @@
-﻿using System;
-using Tasks_Management.Commands.Enums;
+﻿using Tasks_Management.Commands.Enums;
 using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
     public class Bug : Task ,IBug
     {
-        public Bug(string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History, IList<string> steps, Priority priority, Severity severity, Status status, IMember assignee) 
-            : base(Title, Description, Status, Comments, History)
+        public Bug(int id,string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History, IList<string> steps, Priority priority, Severity severity, Status status, IMember assignee) 
+            : base(id,Title,Description,status,Comments,History)
         {
+
         }
 
        

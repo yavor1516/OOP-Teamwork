@@ -20,15 +20,11 @@ namespace Tasks_Management.Models
 
 
         private string name;
-        private string memberName;
-        private string board;
 
-        public Team(string name, string memberName, string board)
+        public Team(string name)
         {
             this.name = name;
-            this.memberName = memberName;
-            this.board = board;
-
+        
         }
 
         public string Name
@@ -40,35 +36,6 @@ namespace Tasks_Management.Models
                 name = value;
             }
         }
-
-
-        public string MemberName
-        {
-            get => memberName;
-            set
-            {
-                Validator.ValidateIntRange(value.Length, TeamNameMinLength, TeamNameMaxLength, InvalidMemberNameError);
-                memberName = value;
-
-            }
-
-
-        }
-
-        public string Board
-        {
-            get => board;
-
-            set
-            {
-                Validator.ValidateIntRange(value.Length, BoardMinLength, BoardMaxLength, InvalidBoardNameError);
-                board = value;
-
-            }
-
-
-        }
-
         public IList<IMember> Members => throw new NotImplementedException();
 
         public IList<IBoard> Boards => throw new NotImplementedException();

@@ -17,7 +17,7 @@ namespace Tasks_Management.Core.Contracts
 
         IList<IBoard> Boards { get; }
 
-        public IMember CreateMember(string name);
+        public IMember CreateMember(string name,string lastName);
 
         public ITeam CreateTeam(string name);
 
@@ -39,9 +39,9 @@ namespace Tasks_Management.Core.Contracts
 
         IBoard GetBoard (string name);
 
-        public IBug CreateBug (string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,IList<string> steps, Priority priority,Severity severity, Status status,IMember assignee);
-        public IStory CreateStory (string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,Priority priority,Size size,IMember assignee);
-        public IFeedBack CreateFeedBack (string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History , int rating);
+        public IBug CreateBug (int id, string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,IList<string> steps, Priority priority,Severity severity, Status status,IMember assignee);
+        public IStory CreateStory (int id, string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,Priority priority,Size size,IMember assignee);
+        public IFeedBack CreateFeedBack (int id, string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History , int rating);
 
         public IComment CreateComment(string content, string task);
     }
