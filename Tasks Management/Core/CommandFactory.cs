@@ -4,6 +4,7 @@ using Tasks_Management.Commands;
 using Tasks_Management.Commands.Contracts;
 using Tasks_Management.Commands.Enums;
 using Tasks_Management.Core.Contracts;
+using Tasks_Management.Exceptions;
 
 
 namespace Tasks_Management.Core
@@ -40,7 +41,7 @@ namespace Tasks_Management.Core
                 case CommandType.ShowTeamActivity:
                     throw new NotImplementedException();
                 case CommandType.AddUserToTeam:
-                    throw new NotImplementedException();
+                    return new AddUserToTeamCommand(commandParameters,repository);
                 case CommandType.ShowAllTeamUsers:
                     throw new NotImplementedException();
                 case CommandType.CreateTeamBoard:
@@ -65,8 +66,7 @@ namespace Tasks_Management.Core
                     throw new NotImplementedException();
 
                 default:
-                    throw new ArgumentException($"Command with name: {commandType}  doesn't exist!");
-                    //Change when Create Exception Foulder!!!!!!!!!
+                    throw new InvalidUserInputException($"Command with name: {commandType}  doesn't exist!");
             }
         }
 
