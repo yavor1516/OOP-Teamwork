@@ -43,7 +43,7 @@ namespace Tasks_Management.Core
                 case CommandType.AddUserToTeam:
                     return new AddUserToTeamCommand(commandParameters,repository);
                 case CommandType.ShowAllTeamUsers:
-                    throw new NotImplementedException();
+                    return new ShowAllTeamUsersCommand(commandParameters,repository);
                 case CommandType.CreateTeamBoard:
                     return new CreateTeamBoardCommand(commandParameters, repository);
                 case CommandType.ShowAllTeamBoards:
