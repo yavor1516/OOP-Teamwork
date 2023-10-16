@@ -37,7 +37,7 @@ namespace Tasks_Management.Commands
                 throw new InvalidUserInputException($"Team {teamName} not found");
             }
 
-            IList<IMember> teamMembers = team.Members;
+            IList<IMember> teamMembers = this.Repository.Members;
 
             if (teamMembers.Count == 0)
             {
@@ -45,8 +45,8 @@ namespace Tasks_Management.Commands
             }
             else
             {
-                string userList = string.Join(", ", teamMembers.Select(member => member.FirstName));
-                return string.Format($"{teamName} includes {teamMembers.Select(member => member.FirstName+member.LastName)}");
+                string userList = string.Join(", ", teamMembers.Select(member => member.FirstName + " " + member.LastName));
+                return $"{teamName} includes {userList}";
             }
         }
     }
