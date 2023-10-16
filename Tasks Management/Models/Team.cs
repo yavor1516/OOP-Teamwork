@@ -20,6 +20,8 @@ namespace Tasks_Management.Models
 
 
         private string name;
+        private List<IMember> members = new List<IMember>();
+        private List<IBoard> boards = new List<IBoard>();
 
         public Team(string name)
         {
@@ -36,9 +38,9 @@ namespace Tasks_Management.Models
                 name = value;
             }
         }
-        public IList<IMember> Members => throw new NotImplementedException();
+        public IList<IMember> Members => members;
 
-        public IList<IBoard> Boards => throw new NotImplementedException();
+        public IList<IBoard> Boards => boards;
 
 
     }
