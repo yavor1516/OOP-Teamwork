@@ -33,13 +33,13 @@ namespace Tasks_Management.Core
                 case CommandType.ShowUsers:
                     return new ShowUsersCommand(commandParameters,repository);
                 case CommandType.ShowUserActivity:
-                    throw new NotImplementedException();
+                    return new ShowUserActivityCommand(commandParameters, repository);
                 case CommandType.CreateNewTeam: 
                     return new CreateNewTeamCommand(commandParameters, repository);
                 case CommandType.ShowAllTeams:
                     return new ShowAllTeamsCommand(commandParameters,repository);
                 case CommandType.ShowTeamActivity:
-                    throw new NotImplementedException();
+                    return new ShowTeamActivityCommand(commandParameters,repository);
                 case CommandType.AddUserToTeam:
                     return new AddUserToTeamCommand(commandParameters,repository);
                 case CommandType.ShowAllTeamUsers:
