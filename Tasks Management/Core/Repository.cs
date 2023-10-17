@@ -180,5 +180,9 @@ namespace Tasks_Management.Core
                 return boardsCopy;
             }
         }
+        public IList<IActiveHistory> GetMemberActivityHistory(IMember member)
+        {
+            return member.History;
+        }
     }
 }
