@@ -3,6 +3,7 @@ using Tasks_Management.Core.Contracts;
 using Tasks_Management.Models;
 using Tasks_Management.Models.Contracts;
 using Tasks_Management.Commands.Enums;
+using System.Threading.Tasks;
 
 namespace Tasks_Management.Core
 {
@@ -11,6 +12,7 @@ namespace Tasks_Management.Core
         private readonly IList<IMember> members = new List<IMember>();
         private readonly IList<ITeam> teams = new List<ITeam>();
         private readonly IList<IBoard> boards = new List<IBoard>();
+        private readonly IList<ITask> tasks = new List<ITask>();
         public void AddMember(IMember member)
         {
             if (!members.Contains(member))
@@ -183,6 +185,17 @@ namespace Tasks_Management.Core
         public IList<IActiveHistory> GetMemberActivityHistory(IMember member)
         {
             return member.History;
+        }
+        public ITask GetTask(string taskName)
+        {
+            foreach (ITask task in tasks) // Assuming 'tasks' is your list of tasks
+            {
+                if (task.Title.Equals(taskName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return task;
+                }
+            }
+            throw new ArgumentException($"There is no task with the name: {taskName}");
         }
     }
 }

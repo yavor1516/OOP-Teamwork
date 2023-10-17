@@ -63,7 +63,7 @@ namespace Tasks_Management.Core
                 case CommandType.UnAssignTask:
                     throw new NotImplementedException();
                 case CommandType.AddComment:
-                    throw new NotImplementedException();
+                    return new AddCommentCommand(commandParameters, repository);
 
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType}  doesn't exist!");

@@ -12,9 +12,13 @@ namespace Tasks_Management.Models.Contracts
         int UniqueID { get;}
         string Description { get; }
 
+        string Title { get; set; }
+
         Status Status { get; }
 
         IList<IComment> Comments { get; }
+
+        void AddComment(IComment comment);
 
         IList<IActiveHistory> History { get; }
     }
