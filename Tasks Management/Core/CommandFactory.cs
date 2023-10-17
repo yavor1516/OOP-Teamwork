@@ -33,13 +33,13 @@ namespace Tasks_Management.Core
                 case CommandType.ShowUsers:
                     return new ShowUsersCommand(commandParameters,repository);
                 case CommandType.ShowUserActivity:
-                    return new ShowUserActivityCommand(commandParameters, repository);
+                    return new ShowUserActivityCommand(commandParameters, repository); //todo
                 case CommandType.CreateNewTeam: 
                     return new CreateNewTeamCommand(commandParameters, repository);
                 case CommandType.ShowAllTeams:
                     return new ShowAllTeamsCommand(commandParameters,repository);
                 case CommandType.ShowTeamActivity:
-                    return new ShowTeamActivityCommand(commandParameters,repository);
+                    return new ShowTeamActivityCommand(commandParameters,repository); //todo
                 case CommandType.AddUserToTeam:
                     return new AddUserToTeamCommand(commandParameters,repository);
                 case CommandType.ShowAllTeamUsers:
@@ -49,7 +49,7 @@ namespace Tasks_Management.Core
                 case CommandType.ShowAllTeamBoards:
                     return new ShowAllTeamBoardsCommand(commandParameters, repository);
                 case CommandType.ShowBoardActivity:
-                    throw new NotImplementedException();
+                    return new ShowBoardActivityCommand(commandParameters, repository); //todo
                 case CommandType.CreateBoardTask:
                     throw new NotImplementedException();
                 case CommandType.ChangeBug:
