@@ -22,20 +22,20 @@ namespace Tasks_Management.Commands
             {
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: 2, Received: {this.CommandParameters.Count}");
             }
-            string name = this.CommandParameters[0];
+            string teamName = this.CommandParameters[0];
             string boardName = this.CommandParameters[1];
-            return CreateTeamBoard(name, boardName);
+            return CreateTeamBoard(teamName, boardName);
         }
-        private string CreateTeamBoard (string name, string boardName)
+        private string CreateTeamBoard (string teamName, string boardName)
         {
-            ITeam team = Repository.GetTeam(name);
+            ITeam team = Repository.GetTeam(teamName);
             if (team == null)
             {                
                 throw new InvalidUserInputException($"Team {team} not found");
             }
             if (this.Repository.BoardExist(boardName))
             {
-                throw new InvalidUserInputException($"Team {name} already exist. Choose a different name!");
+                throw new InvalidUserInputException($"Board {boardName} already exist. Choose a different name!");
             }
             IBoard board = this.Repository.CreateBoard(boardName);
             this.Repository.AddBoard(board);
