@@ -7,6 +7,7 @@ using Tasks_Management.Core.Contracts;
 using Tasks_Management.Core;
 using Tasks_Management.Exceptions;
 using Tasks_Management.Models.Contracts;
+using Tasks_Management.Models;
 
 namespace Tasks_Management.Commands
 {
@@ -38,20 +39,24 @@ namespace Tasks_Management.Commands
                 throw new InvalidUserInputException($"Team {teamName} not found");
             }
 
-            List<IActiveHistory> teamActivityHistory = new List<IActiveHistory>();
+           IActivityHistory teamActivityHistory = new ActivityHistory();
 
             foreach (IMember member in team.Members)
             {
-                teamActivityHistory.AddRange(member.History);
+            foreach (string item in member.History.Messages)
+            {
+                    teamActivityHistory.Messages.Add(item);
+            }
+                
             }
 
-            if (teamActivityHistory.Count == 0)
+            if (teamActivityHistory.Messages.Count == 0)
             {
                 return $"Team {teamName} has no activity.";
             }
             else
             {
-                string activityList = string.Join(", ", teamActivityHistory.Select(activity => activity.Messages));
+                string activityList = string.Join(", ", teamActivityHistory.Messages);
                 return $"Team {teamName} includes {activityList}";
             }
         }

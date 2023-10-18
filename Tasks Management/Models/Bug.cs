@@ -5,23 +5,25 @@ namespace Tasks_Management.Models
 {
     public class Bug : Task ,IBug
     {
-        public Bug(int id,string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History, IList<string> steps, Priority priority, Severity severity, Status status, IMember assignee) 
-            : base(id,Title,Description,status,Comments,History)
+        public Bug(int id,string Title, string Description, Status Status, Priority priority, Severity severity , IActivityHistory history) 
+            : base(id,Title,Description, Status , history)
         {
-
+            activityHistory = history;
         }
 
        
 
 
-        public IList<string> steps => throw new NotImplementedException();
+        public IList<string> steps { get; }
 
-        public Priority priority => throw new NotImplementedException();
+        public Priority priority { get; }
 
-        public Severity severity => throw new NotImplementedException();
+        public Severity severity { get; }
 
-        public Status status => throw new NotImplementedException();
+        public Status status { get; }
 
-        public IMember assignee => throw new NotImplementedException();
+        public IMember assignee { get; }
+
+        public IActivityHistory activityHistory { get; }
     }
 }

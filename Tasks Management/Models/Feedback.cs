@@ -10,13 +10,13 @@ namespace Tasks_Management.Models
 {
     internal class Feedback : Task,IFeedBack
     {
-        public Feedback(int id,string Title, string Description, Status Status,
-            IList<IComment> Comments, IList<IActiveHistory> History , int rating) 
-            :base(id,Title,Description,Status,Comments,History)
+       
+        public Feedback(int id,string Title, string Description, Status Status, int rating , IActivityHistory history) 
+            :base(id,Title,Description,Status,history)
         {
 
         }
 
-        public int Rating => throw new NotImplementedException();
+        public int Rating { get; }
     }
 }

@@ -16,6 +16,7 @@ namespace Tasks_Management.Models.Contracts
         Severity severity { get; }
         Status status { get; }
         IMember assignee { get; }
+        IActivityHistory activityHistory{get;}
 
     }
 }

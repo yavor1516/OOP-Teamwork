@@ -21,5 +21,8 @@ namespace Tasks_Management.Commands.Enums
         AssignTask,
         UnAssignTask,
         AddComment,
+        CreateTask,
+        ShowTaskHistory,
+       
     }
 }

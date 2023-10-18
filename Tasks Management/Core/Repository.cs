@@ -13,6 +13,10 @@ namespace Tasks_Management.Core
         private readonly IList<ITeam> teams = new List<ITeam>();
         private readonly IList<IBoard> boards = new List<IBoard>();
         private readonly IList<ITask> tasks = new List<ITask>();
+
+        private readonly IList<IBug> bugs = new List<IBug>();
+        private readonly IList<IStory> stories = new List<IStory>();
+        private readonly IList<IFeedBack> feedbacks = new List<IFeedBack>();
         public void AddMember(IMember member)
         {
             if (!members.Contains(member))
@@ -34,6 +38,7 @@ namespace Tasks_Management.Core
         public IMember CreateMember(string firstName, string lastName)
         {
           return new Member(firstName,lastName);
+            
         }
 
  
@@ -104,19 +109,19 @@ namespace Tasks_Management.Core
             return result;
         }
 
-        public IBug CreateBug(int id,string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,IList<string> steps,Priority priority,Severity severity,Status status,IMember assignee)
+        public IBug CreateBug(int id,string Title, string Description, Status Status,Priority priority,Severity severity,IActivityHistory history)
         {
-            return new Bug(id,Title, Description, Status, Comments, History,steps,priority,severity,status,assignee);
+            return new Bug(id,Title, Description, Status,priority,severity, history);
         }
 
-        public IStory CreateStory(int id,string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,Priority priority,Size size,IMember assignee)
+        public IStory CreateStory(int id,string Title, string Description, Status Status,Priority priority,Size size , IActivityHistory history)
         {
-            return new Story(id,Title, Description, Status, Comments, History,priority,size,assignee);
+            return new Story(id,Title, Description, Status,priority,size, history);
         }
 
-        public IFeedBack CreateFeedBack(int id, string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History , int Rating)
+        public IFeedBack CreateFeedBack(int id, string Title, string Description, Status Status, int Rating,IActivityHistory history)
         {
-            return new Feedback(id, Title, Description,Status, Comments, History, Rating);
+            return new Feedback(id, Title, Description,Status, Rating, history);
         }
 
         public IBoard CreateBoard(string name)
@@ -131,7 +136,37 @@ namespace Tasks_Management.Core
                 boards.Add(board);
             }
         }
+        public void AddTask(ITask task )
+        {
+            if (!tasks.Contains(task))
+            {
+                tasks.Add(task);
+            }
+        }
+        public void AddBug(IBug bug)
+        {
+            if (!bugs.Contains(bug))
+            {
+                bugs.Add(bug);
 
+            }
+        }
+
+        public void AddStory(IStory story)
+        {
+            if (!stories.Contains(story))
+            {
+                stories.Add(story);
+            }
+        }
+
+        public void AddFeedBack(IFeedBack feedBack)
+        {
+            if (!feedbacks.Contains(feedBack))
+            {
+                feedbacks.Add(feedBack);
+            }
+        }
         public bool BoardExist(string name)
         {
             bool result = false;
@@ -145,6 +180,7 @@ namespace Tasks_Management.Core
             }
             return result;
         }
+      
 
         public IBoard GetBoard(string name)
         {
@@ -182,7 +218,43 @@ namespace Tasks_Management.Core
                 return boardsCopy;
             }
         }
-        public IList<IActiveHistory> GetMemberActivityHistory(IMember member)
+
+        public IList<ITask> Tasks
+        {
+            get
+            {
+                var tasksCopy = new List<ITask>(this.tasks);
+                return tasksCopy;
+            }
+        }
+
+        public IList<IBug> Bugs
+        {
+            get
+            {
+                var bugsCopy = new List<IBug>(this.bugs);
+                return bugsCopy;
+            }
+        }
+        public IList<IStory> Stories
+        {
+            get
+            {
+                var storyCopy = new List<IStory>(this.stories);
+                return storyCopy;
+            }
+        }
+
+        public IList<IFeedBack> FeedBacks
+        {
+            get
+            {
+                var feedBackCopy = new List<IFeedBack>(this.feedbacks);
+                return feedBackCopy;
+            }
+        }
+
+        public Models.Contracts.IActivityHistory GetMemberActivityHistory(IMember member)
         {
             return member.History;
         }
@@ -197,5 +269,7 @@ namespace Tasks_Management.Core
             }
             throw new ArgumentException($"There is no task with the name: {taskName}");
         }
+
+    
     }
 }

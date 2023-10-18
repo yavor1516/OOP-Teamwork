@@ -11,7 +11,7 @@ namespace Tasks_Management.Models
     {
         private string name;
         private IList<ITask> tasks;
-        private IList<IActiveHistory> history;
+        private IList<Contracts.IActivityHistory> history;
 
         public Board(string name)
         {
@@ -19,7 +19,7 @@ namespace Tasks_Management.Models
             {
                 this.name = name;
                 tasks = new List<ITask>();
-                history = new List<IActiveHistory>();
+                history = new List<Contracts.IActivityHistory>();
             }
             else
             {
@@ -29,7 +29,7 @@ namespace Tasks_Management.Models
 
         public IList<ITask> Tasks => tasks;
 
-        public IList<IActiveHistory> History => history;
+        public IList<Contracts.IActivityHistory> History => history;
 
         public string Name => name;
 

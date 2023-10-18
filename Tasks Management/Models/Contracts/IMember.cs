@@ -10,7 +10,7 @@ namespace Tasks_Management.Models.Contracts
     {
         string FirstName { get; }
         string LastName { get; }
-        IList<ITask> Tasks { get; }
-        IList<IActiveHistory> History { get; }
+        public IList<ITask> Tasks { get; }
+        public IActivityHistory History { get; }
     }
 }

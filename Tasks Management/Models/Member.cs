@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Tasks_Management.Models.Contracts;
@@ -12,7 +13,7 @@ namespace Tasks_Management.Models
         private string firstName;
         private string lastName;
         private IList<ITask> tasks;
-        private IList<IActiveHistory> history;
+        private ActivityHistory history;
 
         public Member(string firstName, string lastName)
         {
@@ -22,7 +23,7 @@ namespace Tasks_Management.Models
                 this.firstName = firstName;
                 this.lastName = lastName;
                 tasks = new List<ITask>();
-                history = new List<IActiveHistory>();
+                history = new ActivityHistory();
             }
             else
             {
@@ -33,7 +34,7 @@ namespace Tasks_Management.Models
 
         public IList<ITask> Tasks => tasks;
 
-        public IList<IActiveHistory> History => history;
+        public Contracts.IActivityHistory History => history;
 
         public string FirstName => firstName;
 

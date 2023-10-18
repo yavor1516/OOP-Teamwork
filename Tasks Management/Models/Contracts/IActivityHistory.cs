@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tasks_Management.Models.Contracts
 {
-    public interface IActiveHistory
+    public interface IActivityHistory
     {
         IList<String> Messages { get; }
     }

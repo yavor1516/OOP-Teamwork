@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tasks_Management.Core.Contracts;
 using Tasks_Management.Exceptions;
+using Tasks_Management.Models;
 using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Commands
@@ -36,20 +37,23 @@ namespace Tasks_Management.Commands
                 throw new InvalidUserInputException($"Board {boardName} not found");
             }
 
-            List<IActiveHistory> boardActivityHistory = new List<IActiveHistory>();
-
+            IActivityHistory boardActivityHistory = new ActivityHistory();
+            
             foreach (ITask task in board.Tasks)
             {
-                boardActivityHistory.AddRange(task.History);
+                foreach (string item in task.History.Messages)
+                {
+                    boardActivityHistory.Messages.Add(item);
+                }
             }
 
-            if (boardActivityHistory.Count == 0)
+            if (boardActivityHistory.Messages.Count == 0)
             {
                 return $"Board {boardName} has no activity.";
             }
             else
             {
-                string activityList = string.Join(", ", boardActivityHistory.Select(activity => activity.Messages));
+                string activityList = string.Join(", ", boardActivityHistory);
                 return $"Board {boardName} includes {activityList}";
             }
         }

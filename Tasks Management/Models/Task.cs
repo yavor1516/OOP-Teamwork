@@ -21,16 +21,15 @@ namespace Tasks_Management.Models
         private string title;
         private string description;
         private List<Comment> comments;
-        private List<ActivityHistory> history;
 
-        public Task(int id, string title, string description, Status status, IList<IComment> comments, IList<IActiveHistory> history)
+        public Task(int id, string title, string description, Status status , IActivityHistory history)
         {
             UniqueID = id;
             Title = title;
             Description = description;
             Status = status;
             this.comments = comments != null ? comments.Cast<Comment>().ToList() : new List<Comment>();
-            this.history = history != null ? history.Cast<ActivityHistory>().ToList() : new List<ActivityHistory>();
+            this.History = new ActivityHistory();
         }
 
         public int Id
@@ -65,23 +64,17 @@ namespace Tasks_Management.Models
 
         public IList<IComment> Comments => comments.Cast<IComment>().ToList();
 
-        public IList<IActiveHistory> History => history.Cast<IActiveHistory>().ToList();
+        public IActivityHistory History { get; set; }
 
         public Status Status { get; }
+
+        public TaskType Tasktype { get; set; }
 
         public void AddComment(IComment comment)
         {
             if (comment != null)
             {
                 comments.Add((Comment)comment);
-            }
-        }
-
-        public void AddActiveHistory(IActiveHistory activeHistory)
-        {
-            if (activeHistory != null)
-            {
-                history.Add((ActivityHistory)activeHistory);
             }
         }
     }

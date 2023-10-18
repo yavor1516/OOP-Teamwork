@@ -16,6 +16,12 @@ namespace Tasks_Management.Core.Contracts
         IList<ITeam> Teams { get; }
 
         IList<IBoard> Boards { get; }
+        IList<ITask> Tasks { get; }
+
+        IList<IBug> Bugs { get; }
+        IList<IStory> Stories { get; }
+
+        IList<IFeedBack> FeedBacks { get; }
 
         public IMember CreateMember(string firstName, string lastName);
 
@@ -27,6 +33,11 @@ namespace Tasks_Management.Core.Contracts
         void AddTeam (ITeam team);
 
         void AddBoard (IBoard board);
+        void AddTask(ITask task);
+
+        void AddBug(IBug bug);
+        void AddStory (IStory story);
+        void AddFeedBack(IFeedBack feedBack);
 
         public bool MemberExist (string firstName, string lastName);
         public bool TeamExist (string name);
@@ -41,9 +52,9 @@ namespace Tasks_Management.Core.Contracts
 
         ITask GetTask(string taskName);
 
-        public IBug CreateBug (int id, string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,IList<string> steps, Priority priority,Severity severity, Status status,IMember assignee);
-        public IStory CreateStory (int id, string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History,Priority priority,Size size,IMember assignee);
-        public IFeedBack CreateFeedBack (int id, string Title, string Description, Status Status, IList<IComment> Comments, IList<IActiveHistory> History , int rating);
+        public IBug CreateBug (int id, string Title, string Description, Status Status, Priority priority,Severity severity,IActivityHistory history);
+        public IStory CreateStory (int id, string Title, string Description, Status Status,Priority priority,Size size,IActivityHistory history);
+        public IFeedBack CreateFeedBack (int id, string Title, string Description, Status Status , int rating, IActivityHistory history);
 
         public IComment CreateComment(string content, string task);
     }

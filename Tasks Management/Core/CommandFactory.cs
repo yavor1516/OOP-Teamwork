@@ -59,12 +59,15 @@ namespace Tasks_Management.Core
                 case CommandType.ChangeFeedback:
                     throw new NotImplementedException();
                 case CommandType.AssignTask:
-                    throw new NotImplementedException();
+                    return new AssignTaskCommand(commandParameters, repository);
                 case CommandType.UnAssignTask:
-                    throw new NotImplementedException();
+                    return new UnAssignTaskCommand(commandParameters, repository);
                 case CommandType.AddComment:
                     return new AddCommentCommand(commandParameters, repository);
-
+                case CommandType.CreateTask:
+                    return new CreateTaskCommand(commandParameters, repository);
+                case CommandType.ShowTaskHistory:
+                    return new TaskHistoryCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType}  doesn't exist!");
             }

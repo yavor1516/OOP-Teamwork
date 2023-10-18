@@ -20,6 +20,8 @@ namespace Tasks_Management.Models.Contracts
 
         void AddComment(IComment comment);
 
-        IList<IActiveHistory> History { get; }
+        IActivityHistory History { get; }
+        
+        TaskType Tasktype { get; }
     }
 }

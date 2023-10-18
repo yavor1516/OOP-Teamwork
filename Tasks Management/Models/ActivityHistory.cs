@@ -7,8 +7,12 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    internal class ActivityHistory : IActiveHistory
+    internal class ActivityHistory : Contracts.IActivityHistory
     {
-        public IList<string> Messages => throw new NotImplementedException();
+        public ActivityHistory()
+        {
+            Messages = new List<string>();  
+        }
+        public IList<string> Messages { get; }
     }
 }

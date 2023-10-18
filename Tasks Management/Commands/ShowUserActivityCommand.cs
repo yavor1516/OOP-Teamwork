@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tasks_Management.Core.Contracts;
 using Tasks_Management.Exceptions;
+using Tasks_Management.Models;
 using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Commands
@@ -37,15 +38,15 @@ namespace Tasks_Management.Commands
                     throw new InvalidUserInputException($"User {firstName + ' ' + lastName} not found");
                 }
 
-                IList<IActiveHistory> activeHistory = member.History;
+            Models.Contracts.IActivityHistory activeHistory = member.History;
 
-                if (activeHistory.Count == 0)
+                if (activeHistory.Messages.Count == 0)
                 {
                     return $"User {firstName + " " + lastName} has no activity.";
                 }
                 else
                 {
-                    string userList = string.Join(", ", activeHistory.Select(activity => activity.Messages));
+                    string userList = string.Join(", ", activeHistory.Messages);
                     return $"{firstName+""+lastName} includes {userList}";
                 }
             }
