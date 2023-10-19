@@ -33,8 +33,9 @@ namespace Tasks_Management.Commands
         {
             ITask task = this.Repository.GetTask(taskName);
             IMember member = this.Repository.GetMember(memberFirstName, memberLastName);
-
+            task.Assignee = null;
             member.Tasks.Remove(task);
+            member.History.Messages.Add($"Task of type {task.Tasktype} has beeen unassigned");
             task.History.Messages.Add($"Task of type {task.Tasktype} has been unsassigned from {member.FirstName} {member.LastName}");
             return string.Format($"Task has been unsassigned from {member.FirstName} {member.LastName}!!");
         }

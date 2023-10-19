@@ -28,8 +28,10 @@ namespace Tasks_Management.Commands
         {
             ITask task = Repository.GetTask(taskName);
             IMember member = Repository.GetMember(firstNameMember, lastNameMember);
+            task.Assignee = member;
             task.History.Messages.Add($"Task of type {task.Tasktype} has been assigned to {member.FirstName} {member.LastName}");
             member.Tasks.Add(task);
+            member.History.Messages.Add($"Task of type {task.Tasktype} with title {task.Title} been assigned");
             
             return string.Format($"Task: {task.Title} has been assigned to member: {member.FirstName} {member.LastName}");
 

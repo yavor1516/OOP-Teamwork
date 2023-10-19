@@ -22,6 +22,8 @@ namespace Tasks_Management.Models.Contracts
 
         IActivityHistory History { get; }
         
-        TaskType Tasktype { get; }
+        TaskType Tasktype { get; set; }
+
+        IMember Assignee { get; set; }
     }
 }

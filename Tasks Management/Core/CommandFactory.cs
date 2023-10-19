@@ -53,7 +53,7 @@ namespace Tasks_Management.Core
                 case CommandType.CreateBoardTask:
                     throw new NotImplementedException();
                 case CommandType.ChangeBug:
-                    throw new NotImplementedException();
+                    return new ChangeBugCommand(commandParameters, repository);
                 case CommandType.ChangeStory:
                     throw new NotImplementedException();
                 case CommandType.ChangeFeedback:
