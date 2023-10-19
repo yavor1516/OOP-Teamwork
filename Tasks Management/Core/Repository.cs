@@ -4,6 +4,7 @@ using Tasks_Management.Models;
 using Tasks_Management.Models.Contracts;
 using Tasks_Management.Commands.Enums;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Tasks_Management.Core
 {
@@ -13,7 +14,7 @@ namespace Tasks_Management.Core
         private readonly IList<ITeam> teams = new List<ITeam>();
         private readonly IList<IBoard> boards = new List<IBoard>();
         private readonly IList<ITask> tasks = new List<ITask>();
-
+        //get bug , get story , get feedback, get all bugs, get all stories ,get all feedbacks , 
         private readonly IList<IBug> bugs = new List<IBug>();
         private readonly IList<IStory> stories = new List<IStory>();
         private readonly IList<IFeedBack> feedbacks = new List<IFeedBack>();
@@ -71,7 +72,41 @@ namespace Tasks_Management.Core
             }
             throw new ArgumentException($"There is no team with name: {name}!");
         }
+        public Bug GetBug(string bugName)
+        {
+            foreach(Bug bug in this.bugs)
+            {
+                if (bug.Title.Equals(bugName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return bug;
+                }
+            }
+            throw new ArgumentException($"There is no bug with name: {bugName}!");
+        }
 
+        public IStory GetStory(string storyName)
+        {
+            foreach (Story story in this.stories)
+            {
+                if (story.Title.Equals(storyName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return story;
+                }
+            }
+            throw new ArgumentException($"There is no story with name: {storyName}!");
+        }
+
+        public IFeedBack GetFeedBack(string feedBackName)
+        {
+            foreach (Feedback feedback in this.feedbacks)
+            {
+                if (feedback.Title.Equals(feedBackName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return feedback;
+                }
+            }
+            throw new ArgumentException($"There is no feedback with name: {feedBackName}!");
+        }
         public bool MemberExist(string firstName, string lastName)
         {
             bool result = false;
@@ -270,6 +305,6 @@ namespace Tasks_Management.Core
             throw new ArgumentException($"There is no task with the name: {taskName}");
         }
 
-    
+
     }
 }

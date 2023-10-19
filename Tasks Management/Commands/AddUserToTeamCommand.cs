@@ -37,7 +37,9 @@ namespace Tasks_Management.Commands
                 throw new InvalidUserInputException($"Team {team} not found");
             }
             IMember member = this.Repository.GetMember(firstName, lastName);
-            this.Repository.AddMember(member);
+            team.History.Messages.Add($"{firstName} {lastName} just beeen assigned to the team");
+            team.Members.Add(member);
+           
             return string.Format($"User{firstName + lastName} added to team{name}!");
         }
     }

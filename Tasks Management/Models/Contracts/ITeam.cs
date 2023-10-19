@@ -10,5 +10,6 @@ namespace Tasks_Management.Models.Contracts
     {
         IList<IMember> Members { get; }
         IList<IBoard> Boards { get; }
+        IActivityHistory History { get; set; }
     }
 }

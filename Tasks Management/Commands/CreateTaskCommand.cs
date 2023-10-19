@@ -29,7 +29,7 @@ namespace Tasks_Management.Commands
             string Description = this.CommandParameters[2];
             Status status = ParseStatusType(this.CommandParameters[3]);
             Priority priority = Priority.Low;
-
+            
             switch (commandType)
             {
                 case TaskType.Bug:

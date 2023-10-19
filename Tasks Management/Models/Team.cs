@@ -22,10 +22,11 @@ namespace Tasks_Management.Models
         private string name;
         private List<IMember> members = new List<IMember>();
         private List<IBoard> boards = new List<IBoard>();
-
+        private IActivityHistory history = new ActivityHistory();
         public Team(string name)
         {
             this.name = name;
+            this.History = history;
         
         }
 
@@ -42,6 +43,6 @@ namespace Tasks_Management.Models
 
         public IList<IBoard> Boards => boards;
 
-
+        public IActivityHistory History {get;set;}
     }
 }

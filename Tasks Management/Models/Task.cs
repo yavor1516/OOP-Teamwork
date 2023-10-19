@@ -70,6 +70,8 @@ namespace Tasks_Management.Models
 
         public TaskType Tasktype { get; set; }
 
+        public IMember Assignee { get; set; }
+
         public void AddComment(IComment comment)
         {
             if (comment != null)

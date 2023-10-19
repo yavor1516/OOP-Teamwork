@@ -16,11 +16,11 @@ namespace Tasks_Management.Models
 
         public IList<string> steps { get; }
 
-        public Priority priority { get; }
+        public Priority priority { get; set; }
 
-        public Severity severity { get; }
+        public Severity severity { get; set; }
 
-        public Status status { get; }
+        public Status status { get; set; }
 
         public IMember assignee { get; }
 

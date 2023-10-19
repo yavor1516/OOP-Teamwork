@@ -39,24 +39,24 @@ namespace Tasks_Management.Commands
                 throw new InvalidUserInputException($"Team {teamName} not found");
             }
 
-           IActivityHistory teamActivityHistory = new ActivityHistory();
+        
 
             foreach (IMember member in team.Members)
             {
-            foreach (string item in member.History.Messages)
-            {
-                    teamActivityHistory.Messages.Add(item);
-            }
+                for (int i = 0; i < member.History.Messages.Count; i++)
+                {
+                    team.History.Messages.Add(member.History.Messages[i] + "--//" + $"{member.FirstName} {member.LastName}");
+                }
                 
             }
 
-            if (teamActivityHistory.Messages.Count == 0)
+            if (team.History.Messages.Count == 0)
             {
                 return $"Team {teamName} has no activity.";
             }
             else
             {
-                string activityList = string.Join(", ", teamActivityHistory.Messages);
+                string activityList = string.Join(", ", team.History.Messages);
                 return $"Team {teamName} includes {activityList}";
             }
         }

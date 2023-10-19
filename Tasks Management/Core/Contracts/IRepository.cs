@@ -51,6 +51,9 @@ namespace Tasks_Management.Core.Contracts
         IBoard GetBoard (string name);
 
         ITask GetTask(string taskName);
+        Bug GetBug (string bugName);
+        IStory GetStory (string storyName);
+        IFeedBack GetFeedBack (string feedBackName);
 
         public IBug CreateBug (int id, string Title, string Description, Status Status, Priority priority,Severity severity,IActivityHistory history);
         public IStory CreateStory (int id, string Title, string Description, Status Status,Priority priority,Size size,IActivityHistory history);
