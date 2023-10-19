@@ -43,24 +43,22 @@ namespace Tasks_Management.Models
             get => title;
             set
             {
-                if (value.Length >= NameMinLength && value.Length <= NameMaxLength)
-                {
+                Validator.ValidateIntRange(value.Length, NameMinLength, NameMaxLength, InvalidNameError);
                     title = value;
                 }
             }
-        }
+        
 
         public string Description
         {
             get => description;
             set
             {
-                if (value.Length >= DescriptionMinLength && value.Length <= DescriptionMaxLength)
-                {
+            Validator.ValidateIntRange(value.Length, DescriptionMinLength, DescriptionMaxLength, InvalidDescriptionError);
                     description = value;
                 }
             }
-        }
+        
 
         public IList<IComment> Comments => comments.Cast<IComment>().ToList();
 

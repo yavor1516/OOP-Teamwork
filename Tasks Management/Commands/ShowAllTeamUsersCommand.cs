@@ -8,6 +8,7 @@ using Tasks_Management.Core;
 using Tasks_Management.Exceptions;
 using Tasks_Management.Models.Contracts;
 using System.Xml.Linq;
+using Tasks_Management.Models;
 
 namespace Tasks_Management.Commands
 {
@@ -22,7 +23,7 @@ namespace Tasks_Management.Commands
         {
             if (this.CommandParameters.Count != 1)
             {
-                throw new InvalidUserInputException($"Invalid number of arguments. Expected: 2, Received: {this.CommandParameters.Count}");
+                throw new InvalidUserInputException($"This command expects 1 argument. Usage: ShowAllTeamUsers [team]");
             }
             string teamName = this.CommandParameters[0];
             return ShowTeamUsers(teamName);
