@@ -7,7 +7,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    internal class Comment : IComment
+    public class Comment : IComment
     {
 
         public Comment(string content, string task)

@@ -7,7 +7,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    internal class ActivityHistory : Contracts.IActivityHistory
+    public class ActivityHistory : Contracts.IActivityHistory
     {
         public ActivityHistory()
         {

@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using Tasks_Management.Commands.Enums;
+﻿using Tasks_Management.Commands.Enums;
+using Tasks_Management.Exceptions;
 using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    public abstract class Task : ITask
+    public class Task : ITask
     {
         public int UniqueID { get; }
 
@@ -28,7 +28,7 @@ namespace Tasks_Management.Models
             Title = title;
             Description = description;
             Status = status;
-            this.comments = comments != null ? comments.Cast<Comment>().ToList() : new List<Comment>();
+            this.comments = new List<Comment>();
             this.History = new ActivityHistory();
         }
 
@@ -73,6 +73,10 @@ namespace Tasks_Management.Models
             if (comment != null)
             {
                 comments.Add((Comment)comment);
+            }
+            else
+            {
+                throw new InvalidUserInputException(nameof(comment));
             }
         }
     }
