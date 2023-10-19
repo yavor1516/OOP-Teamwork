@@ -9,6 +9,9 @@ namespace Tasks_Management.Models
 {
     internal class Board : IBoard
     {
+        public const int NameMinLength = 5;
+        public const int NameMaxLength = 10;
+        public const string InvalidBoardError = "Board name must be between 5 and 10 characters";
         private string name;
         private IList<ITask> tasks;
         private IList<Contracts.IActivityHistory> history;
@@ -31,7 +34,17 @@ namespace Tasks_Management.Models
 
         public IList<Contracts.IActivityHistory> History => history;
 
-        public string Name => name;
+        public string Name
+        { 
+            get 
+            { 
+                return name; 
+            } 
+            set {
+                Validator.ValidateIntRange(value.Length, NameMinLength, NameMaxLength, InvalidBoardError);
+                name = value;
+            }
+        }
 
         private bool IsNameValid(string name)
         {
