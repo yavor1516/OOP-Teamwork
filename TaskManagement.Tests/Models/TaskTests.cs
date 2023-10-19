@@ -81,13 +81,12 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string validTitle = "ValidTitle";
-            string validDescription = new string('a', 500);
             Status status = Status.InProgress;
             IActivityHistory history = new ActivityHistory();
 
             // Act & Assert
-            Assert.AreEqual(validTitle, new Tasks_Management.Models.Task(id, validTitle, validDescription, status, history).Title);
-            Assert.AreEqual(validDescription, new Tasks_Management.Models.Task(id, validTitle, validDescription, status, history).Description);
+            Assert.AreEqual(validTitle, new Tasks_Management.Models.Task(id, validTitle, "Description", status, history).Title);
+            Assert.AreEqual("Description", new Tasks_Management.Models.Task(id, validTitle, "Description", status, history).Description);
         }
 
         [TestMethod]
@@ -96,10 +95,9 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string validTitle = "ValidTitle";
-            string validDescription = new string('a', 500);
             Status status = Status.InProgress;
             IActivityHistory history = new ActivityHistory();
-            Tasks_Management.Models.Task task = new Tasks_Management.Models.Task(id, validTitle, validDescription, status, history);
+            Tasks_Management.Models.Task task = new Tasks_Management.Models.Task(id, validTitle, "Description", status, history);
             IComment comment = new Comment("Sample Comment" ,"TaskHere");
 
             // Act
@@ -115,10 +113,9 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string validTitle = "ValidTitle";
-            string validDescription = new string('a', 500);
             Status status = Status.InProgress;
             IActivityHistory history = new ActivityHistory();
-            Tasks_Management.Models.Task task = new Tasks_Management.Models.Task(id, validTitle, validDescription, status, history);
+            Tasks_Management.Models.Task task = new Tasks_Management.Models.Task(id, validTitle, "Description", status, history);
 
             // Act & Assert
             Assert.ThrowsException<InvalidUserInputException>(() =>
