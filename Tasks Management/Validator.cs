@@ -67,4 +67,33 @@ public static class Validator
             throw new InvalidUserInputException(msg);
         }
     }
+
+    public static void ValidatePriority(Commands.Enums.Priority value, string message)
+    {
+        if (value != Commands.Enums.Priority.High &&
+            value != Commands.Enums.Priority.Medium &&
+            value != Commands.Enums.Priority.Low)
+        {
+            throw new InvalidUserInputException(message);
+        }
+    }
+    public static void ValidateSeverity(Commands.Enums.Severity value, string message)
+    {
+        if (value != Commands.Enums.Severity.Critical &&
+            value != Commands.Enums.Severity.Major &&
+            value != Commands.Enums.Severity.Minor)
+        {
+            throw new InvalidUserInputException(message);
+        }
+    }
+    public static void ValidateSize(Commands.Enums.Size value, string message)
+    {
+        if (value != Commands.Enums.Size.Medium &&
+            value != Commands.Enums.Size.Large &&
+            value != Commands.Enums.Size.Small)
+        {
+            throw new InvalidUserInputException(message);
+        }
+    }
+
 }

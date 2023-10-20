@@ -13,6 +13,10 @@ namespace Tasks_Management.Models
             activityHistory = history;
             Validator.ValidateBugStatus(bugStatus, "Invalid bug status.");
             status = bugStatus;
+            Validator.ValidatePriority(priority, "Invalid priority.");
+            this.priority = priority;
+            Validator.ValidateSeverity(severity, "Invalid severity.");
+            this.severity = severity;
         }
 
 

@@ -34,7 +34,7 @@ namespace Tasks_Management.Commands
                 case TaskType.Bug:
                     if (this.CommandParameters.Count != 6)
                     {
-                        throw new InvalidUserInputException($"Invalid number of arguments. Expected: 6, Received: {this.CommandParameters.Count}");
+                        throw new InvalidUserInputException($"Invalid number of arguments. Usage:CreateTask Bug [title] [description] [status] [priority] [severity]");
                     }
                     BugStatus status = ParseBugStatusType(this.CommandParameters[3]);
                     priority = ParsePriorityType(this.CommandParameters[4]);
@@ -47,7 +47,7 @@ namespace Tasks_Management.Commands
                 case TaskType.Story:
                     if (this.CommandParameters.Count != 6)
                     {
-                        throw new InvalidUserInputException($"Invalid number of arguments. Expected: 6, Received: {this.CommandParameters.Count}");
+                        throw new InvalidUserInputException($"Invalid number of arguments. Usage:CreateTask Story [title] [description] [status] [priority] [size]");
                     }
                     StoryStatus storyStatus = ParseStoryStatusType(this.CommandParameters[3]);
                     priority = ParsePriorityType(this.CommandParameters[4]);
@@ -60,7 +60,7 @@ namespace Tasks_Management.Commands
                 case TaskType.Feedback:
                     if (this.CommandParameters.Count != 5)
                     {
-                        throw new InvalidUserInputException($"Invalid number of arguments. Expected: 5, Received: {this.CommandParameters.Count}");
+                        throw new InvalidUserInputException($"Invalid number of arguments. Usage:CreateTask Feedback [title] [description] [status] [rating]");
                     }
                     FeedbackStatus feedbackStatus = ParseFeedbackStatusType(this.CommandParameters[3]);
                     int rating = int.Parse(this.CommandParameters[4]);
@@ -82,14 +82,20 @@ namespace Tasks_Management.Commands
         private Priority ParsePriorityType(string priority)
         {
 
-            Enum.TryParse(priority, true, out Priority result);
-            return result;
+            if (Enum.TryParse(priority, true, out Priority result))
+            {
+                return result;
+            }
+            throw new InvalidUserInputException($"Unknown Priority {priority}. Options: {string.Join(", ", Enum.GetNames(typeof(Priority)).ToList())}");
         }
+
         private Severity ParseSeverityType(string severity)
         {
-
-            Enum.TryParse(severity, true, out Severity result);
-            return result;
+            if (Enum.TryParse(severity, true, out Severity result))
+            { 
+                return result;
+            }
+            throw new InvalidUserInputException($"Unknown Bug Severity {severity}. Options: {string.Join(", ", Enum.GetNames(typeof(Severity)).ToList())}");
         }
         public StoryStatus ParseStoryStatusType(string status)
         {
@@ -97,7 +103,7 @@ namespace Tasks_Management.Commands
             {
                 return result;
             }
-            throw new InvalidUserInputException($"Unknown Bug Status {status}. Options: {string.Join(", ", Enum.GetNames(typeof(StoryStatus)).ToList())}");
+            throw new InvalidUserInputException($"Unknown Story Status {status}. Options: {string.Join(", ", Enum.GetNames(typeof(StoryStatus)).ToList())}");
         }
         public BugStatus ParseBugStatusType(string status)
         {
