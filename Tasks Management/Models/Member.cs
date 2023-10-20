@@ -10,6 +10,8 @@ namespace Tasks_Management.Models
 {
     internal class Member : IMember
     {
+        private static readonly int NAME_MIN_LENGTH = 5;
+        private static readonly int NAME_MAX_LENGTH = 15;
         private string firstName;
         private string lastName;
         private IList<ITask> tasks;
@@ -17,36 +19,38 @@ namespace Tasks_Management.Models
 
         public Member(string firstName, string lastName)
         {
-            //ToDO
-            if (IsNameValid(firstName) && IsLastNameValid(lastName))
-            {
-                this.firstName = firstName;
-                this.lastName = lastName;
-                tasks = new List<ITask>();
-                history = new ActivityHistory();
-            }
-            else
-            {
-                throw new ArgumentException("Invalid member name.");
-            }
-        
+            tasks = new List<ITask>();
+            history = new ActivityHistory();
+            FirstName = firstName;
+            LastName = lastName;
         }
 
         public IList<ITask> Tasks => tasks;
 
         public Contracts.IActivityHistory History => history;
 
-        public string FirstName => firstName;
-
-        public string LastName => lastName;
-
-
-        private bool IsNameValid(string firstName)
+        public string FirstName
         {
-            return !string.IsNullOrEmpty(firstName) && firstName.Length >= 5 && firstName.Length <= 15;
-        } private bool IsLastNameValid(string lastName)
+            get { return firstName; }
+            set
+            {
+                Validator.ValidateString(value, "First name is invalid.");
+                Validator.ValidateIntRange(value.Length, NAME_MIN_LENGTH, NAME_MAX_LENGTH,
+                    $"First name length is not valid. Acceptable length between {NAME_MIN_LENGTH} and {NAME_MAX_LENGTH} characters.");
+                firstName = value;
+            }
+        }
+
+        public string LastName
         {
-            return !string.IsNullOrEmpty(lastName) && lastName.Length >= 5 && lastName.Length <= 15;
-        } 
+            get { return lastName; }
+            set
+            {
+                Validator.ValidateString(value, "Last name is invalid.");
+                Validator.ValidateIntRange(value.Length, NAME_MIN_LENGTH, NAME_MAX_LENGTH,
+                    $"Last name length is not valid. Acceptable length between {NAME_MIN_LENGTH} and {NAME_MAX_LENGTH} characters.");
+                lastName = value;
+            }
+        }
     }
 }

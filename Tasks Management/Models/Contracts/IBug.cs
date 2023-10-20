@@ -14,7 +14,16 @@ namespace Tasks_Management.Models.Contracts
         Priority priority { get; }
 
         Severity severity { get; }
-        Status status { get; }
+        public BugStatus BugStatus
+        {
+            get
+            { return BugStatus; }
+
+            set
+            {
+                BugStatus = value;
+            }
+        }
         IMember assignee { get; }
         IActivityHistory activityHistory{get;}
 

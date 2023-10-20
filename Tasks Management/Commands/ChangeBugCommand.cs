@@ -50,9 +50,9 @@ namespace Tasks_Management.Commands
             Enum.TryParse(severity, true, out Severity result);
             return result;
         }
-        public Status ParseStatusType(string status)
+        public BugStatus ParseStatusType(string status)
         {
-            Enum.TryParse(status, true, out Status result);
+            Enum.TryParse(status, true, out BugStatus result);
             return result;
         }
         private string ChangePriority(string BugName,Priority priority)
@@ -73,13 +73,13 @@ namespace Tasks_Management.Commands
             bug.severity = severity;
             return string.Format($"Bug severity changed successfully!");
         }
-        private string ChangeStatus(string BugName,Status status)
+        private string ChangeStatus(string BugName,BugStatus bugStatus)
         {
             Bug bug = this.Repository.GetBug(BugName);
-            bug.activityHistory.Messages.Add($"Bug status has been changed from {bug.status} to {status}");
+            bug.activityHistory.Messages.Add($"Bug status has been changed from {bug.status} to {bugStatus}");
             ITask task = this.Repository.GetTask(BugName);
-            task.History.Messages.Add($"Bug status has been changed from {bug.status} to {status}");
-            bug.status = status;
+            task.History.Messages.Add($"Bug status has been changed from {bug.status} to {bugStatus}");
+            bug.status = bugStatus;
             return string.Format($"Bug status changed successfully!");
 
         }

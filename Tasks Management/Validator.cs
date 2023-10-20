@@ -30,4 +30,41 @@ public static class Validator
             throw new InvalidUserInputException(message);
         }
     }
+
+    public static void ValidateBugStatus(Commands.Enums.BugStatus value, string message)
+    {
+        if (value != Commands.Enums.BugStatus.Active && value != Commands.Enums.BugStatus.Fixed)
+        {
+            throw new InvalidUserInputException(message);
+        }
+    }
+
+    public static void ValidateStoryStatus(Commands.Enums.StoryStatus value, string message)
+    {
+        if (value != Commands.Enums.StoryStatus.NotDone &&
+            value != Commands.Enums.StoryStatus.InProgress &&
+            value != Commands.Enums.StoryStatus.Done)
+        {
+            throw new InvalidUserInputException(message);
+        }
+    }
+
+    public static void ValidateFeedbackStatus(Commands.Enums.FeedbackStatus value, string message)
+    {
+        if (value != Commands.Enums.FeedbackStatus.Scheduled &&
+            value != Commands.Enums.FeedbackStatus.New &&
+            value != Commands.Enums.FeedbackStatus.Done &&
+            value != Commands.Enums.FeedbackStatus.Unscheduled)
+        {
+            throw new InvalidUserInputException(message);
+        }
+    }
+
+    public static void ValidateString(string str, string msg)
+    {
+        if (string.IsNullOrEmpty(str))
+        {
+            throw new InvalidUserInputException(msg);
+        }
+    }
 }

@@ -11,8 +11,8 @@ namespace Tasks_Management.Models
     internal class Feedback : Task,IFeedBack
     {
        
-        public Feedback(int id,string Title, string Description, Status Status, int rating , IActivityHistory history) 
-            :base(id,Title,Description,Status,history)
+        public Feedback(int id,string Title, string Description, FeedbackStatus feedbackStatus, int rating , IActivityHistory history) 
+            :base(id,Title,Description, history)
         {
 
         }

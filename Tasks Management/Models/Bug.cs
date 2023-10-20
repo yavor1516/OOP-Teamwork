@@ -1,17 +1,19 @@
-﻿using Tasks_Management.Commands.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using System;
+using Tasks_Management.Commands.Enums;
 using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    public class Bug : Task ,IBug
+    public class Bug : Task, IBug
     {
-        public Bug(int id,string Title, string Description, Status Status, Priority priority, Severity severity , IActivityHistory history) 
-            : base(id,Title,Description, Status , history)
+        public Bug(int id, string title, string description, BugStatus bugStatus, Priority priority, Severity severity, IActivityHistory history)
+            : base(id, title, description, history)
         {
             activityHistory = history;
+            Validator.ValidateBugStatus(bugStatus, "Invalid bug status.");
+            status = bugStatus;
         }
-
-       
 
 
         public IList<string> steps { get; }
@@ -20,7 +22,7 @@ namespace Tasks_Management.Models
 
         public Severity severity { get; set; }
 
-        public Status status { get; set; }
+        public BugStatus status { get; set; }
 
         public IMember assignee { get; }
 

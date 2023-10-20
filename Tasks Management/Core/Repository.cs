@@ -144,19 +144,19 @@ namespace Tasks_Management.Core
             return result;
         }
 
-        public IBug CreateBug(int id,string Title, string Description, Status Status,Priority priority,Severity severity,IActivityHistory history)
+        public IBug CreateBug(int id,string Title, string Description, BugStatus bugStatus,Priority priority,Severity severity,IActivityHistory history)
         {
-            return new Bug(id,Title, Description, Status,priority,severity, history);
+            return new Bug(id,Title, Description, bugStatus,priority,severity, history);
         }
 
-        public IStory CreateStory(int id,string Title, string Description, Status Status,Priority priority,Size size , IActivityHistory history)
+        public IStory CreateStory(int id,string Title, string Description, StoryStatus storyStatus,Priority priority,Size size , IActivityHistory history)
         {
-            return new Story(id,Title, Description, Status,priority,size, history);
+            return new Story(id,Title, Description, storyStatus, priority,size, history);
         }
 
-        public IFeedBack CreateFeedBack(int id, string Title, string Description, Status Status, int Rating,IActivityHistory history)
+        public IFeedBack CreateFeedBack(int id, string Title, string Description, FeedbackStatus feedbackStatus, int Rating,IActivityHistory history)
         {
-            return new Feedback(id, Title, Description,Status, Rating, history);
+            return new Feedback(id, Title, Description, feedbackStatus, Rating, history);
         }
 
         public IBoard CreateBoard(string name)

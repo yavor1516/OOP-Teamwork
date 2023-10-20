@@ -27,7 +27,6 @@ namespace Tasks_Management.Commands
             TaskType commandType = ParseTaskType(this.CommandParameters[0]);
             string Title = this.CommandParameters[1];
             string Description = this.CommandParameters[2];
-            Status status = ParseStatusType(this.CommandParameters[3]);
             Priority priority = Priority.Low;
             
             switch (commandType)
@@ -37,6 +36,7 @@ namespace Tasks_Management.Commands
                     {
                         throw new InvalidUserInputException($"Invalid number of arguments. Expected: 6, Received: {this.CommandParameters.Count}");
                     }
+                    BugStatus status = ParseBugStatusType(this.CommandParameters[3]);
                     priority = ParsePriorityType(this.CommandParameters[4]);
                     Severity severity = ParseSeverityType(this.CommandParameters[5]);
                     IActivityHistory history = new ActivityHistory();
@@ -49,10 +49,11 @@ namespace Tasks_Management.Commands
                     {
                         throw new InvalidUserInputException($"Invalid number of arguments. Expected: 6, Received: {this.CommandParameters.Count}");
                     }
+                    StoryStatus storyStatus = ParseStoryStatusType(this.CommandParameters[3]);
                     priority = ParsePriorityType(this.CommandParameters[4]);
                     Size size = ParseSizeType(this.CommandParameters[5]);
                     history = new ActivityHistory();
-                    Story story = new Story(id, Title, Description, status, priority, size, history);
+                    Story story = new Story(id, Title, Description, storyStatus, priority, size, history);
                     story.Tasktype = TaskType.Story;
                     return this.CreateStory(story);
                      
@@ -61,14 +62,15 @@ namespace Tasks_Management.Commands
                     {
                         throw new InvalidUserInputException($"Invalid number of arguments. Expected: 5, Received: {this.CommandParameters.Count}");
                     }
+                    FeedbackStatus feedbackStatus = ParseFeedbackStatusType(this.CommandParameters[3]);
                     int rating = int.Parse(this.CommandParameters[4]);
                     history = new ActivityHistory();
-                    Feedback feedback = new Feedback(id, Title, Description, status, rating,history);
+                    Feedback feedback = new Feedback(id, Title, Description, feedbackStatus, rating,history);
                     feedback.Tasktype = TaskType.Feedback;
                     return this.CreateFeedBack(feedback);
                  
                 default:
-                    throw new ArgumentException("Defoult");
+                    throw new ArgumentException("Default");
             }
         }
         private TaskType ParseTaskType(string taskType)
@@ -89,10 +91,29 @@ namespace Tasks_Management.Commands
             Enum.TryParse(severity, true, out Severity result);
             return result;
         }
-        public Status ParseStatusType(string status)
+        public StoryStatus ParseStoryStatusType(string status)
         {
-            Enum.TryParse(status, true, out Status result);
-            return result;
+            if(Enum.TryParse(status, true, out StoryStatus result))
+            {
+                return result;
+            }
+            throw new InvalidUserInputException($"Unknown Bug Status {status}. Options: {string.Join(", ", Enum.GetNames(typeof(StoryStatus)).ToList())}");
+        }
+        public BugStatus ParseBugStatusType(string status)
+        {
+            if(Enum.TryParse(status, true, out BugStatus result))
+            {
+                return result;
+            }
+            throw new InvalidUserInputException($"Unknown Bug Status {status}. Options: {string.Join(", ", Enum.GetNames(typeof(BugStatus)).ToList())}");
+        }
+        public FeedbackStatus ParseFeedbackStatusType(string status)
+        {
+            if(Enum.TryParse(status, true, out FeedbackStatus result))
+            {
+                return result;
+            }
+            throw new InvalidUserInputException($"Unknown Feedback Status: {status}. Options: {string.Join(", ", Enum.GetNames(typeof(FeedbackStatus)).ToList())}");
         }
         private Size ParseSizeType(string size)
         {

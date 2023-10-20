@@ -18,16 +18,11 @@ namespace Tasks_Management.Models
 
         public Board(string name)
         {
-            if (IsNameValid(name))
-            {
-                this.name = name;
-                tasks = new List<ITask>();
-                history = new List<Contracts.IActivityHistory>();
-            }
-            else
-            {
-                throw new ArgumentException("Invalid board name.");
-            }
+            
+            Name = name;
+            tasks = new List<ITask>();
+            history = new List<Contracts.IActivityHistory>();
+            
         }
 
         public IList<ITask> Tasks => tasks;
@@ -40,15 +35,12 @@ namespace Tasks_Management.Models
             { 
                 return name; 
             } 
-            set {
+            set
+            {
+                Validator.ValidateString(value, "Board name is not valid.");
                 Validator.ValidateIntRange(value.Length, NameMinLength, NameMaxLength, InvalidBoardError);
                 name = value;
             }
-        }
-
-        private bool IsNameValid(string name)
-        {
-            return !string.IsNullOrEmpty(name) && name.Length >= 5 && name.Length <= 10;
-        }
+        }       
     }
 }

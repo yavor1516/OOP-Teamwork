@@ -10,9 +10,12 @@ namespace Tasks_Management.Models
 {
     internal class Story : Task ,IStory
     {
-        public Story(int id,string Title, string Description, Status Status,Priority priority,Size size,IActivityHistory history) 
-            : base(id,Title, Description, Status, history)
+        public Story(int id,string Title, string Description, StoryStatus Status,Priority priority,Size size,IActivityHistory history) 
+            : base(id,Title, Description, history)
         {
+          
+
+
 
         }
 

@@ -55,9 +55,9 @@ namespace Tasks_Management.Core.Contracts
         IStory GetStory (string storyName);
         IFeedBack GetFeedBack (string feedBackName);
 
-        public IBug CreateBug (int id, string Title, string Description, Status Status, Priority priority,Severity severity,IActivityHistory history);
-        public IStory CreateStory (int id, string Title, string Description, Status Status,Priority priority,Size size,IActivityHistory history);
-        public IFeedBack CreateFeedBack (int id, string Title, string Description, Status Status , int rating, IActivityHistory history);
+        public IBug CreateBug (int id, string Title, string Description, BugStatus bugStatus, Priority priority,Severity severity,IActivityHistory history);
+        public IStory CreateStory (int id, string Title, string Description, StoryStatus storyStatus,Priority priority,Size size,IActivityHistory history);
+        public IFeedBack CreateFeedBack (int id, string Title, string Description, FeedbackStatus feedbackStatus , int rating, IActivityHistory history);
 
         public IComment CreateComment(string content, string task);
     }
