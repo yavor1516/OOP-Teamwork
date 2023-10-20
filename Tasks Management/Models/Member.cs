@@ -8,7 +8,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    internal class Member : IMember
+    public class Member : IMember
     {
         private string firstName;
         private string lastName;
