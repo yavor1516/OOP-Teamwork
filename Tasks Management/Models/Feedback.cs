@@ -8,15 +8,18 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    internal class Feedback : Task,IFeedBack
+    public class Feedback : Task, IFeedBack
     {
        
-        public Feedback(int id,string Title, string Description, Status Status, int rating , IActivityHistory history) 
-            :base(id,Title,Description,Status,history)
+        public Feedback(int id,string Title, string Description, FeedbackStatus status, int rating , IActivityHistory history) 
+            :base(id,Title,Description,history)
         {
-
+            this.Rating = rating;
+            this.Status = status;
         }
 
-        public int Rating { get; }
+        public int Rating { get; set; }
+
+        public FeedbackStatus Status { get; set; }
     }
 }

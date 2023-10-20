@@ -14,8 +14,6 @@ namespace Tasks_Management.Models.Contracts
 
         string Title { get; set; }
 
-        Status Status { get; }
-
         IList<IComment> Comments { get; }
 
         void AddComment(IComment comment);

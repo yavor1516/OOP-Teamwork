@@ -55,9 +55,9 @@ namespace Tasks_Management.Core
                 case CommandType.ChangeBug:
                     return new ChangeBugCommand(commandParameters, repository);
                 case CommandType.ChangeStory:
-                    throw new NotImplementedException();
+                    return new ChangeStroyCommand(commandParameters, repository);
                 case CommandType.ChangeFeedback:
-                    throw new NotImplementedException();
+                    return new ChangeFeedBackCommand(commandParameters, repository);
                 case CommandType.AssignTask:
                     return new AssignTaskCommand(commandParameters, repository);
                 case CommandType.UnAssignTask:
@@ -76,8 +76,10 @@ namespace Tasks_Management.Core
         private CommandType ParseCommandType(string commandLine)
         {
             string commandName = commandLine.Split(SplitCommandSymbol)[0];
-            Enum.TryParse(commandName, true, out CommandType result);
-            return result;
+
+            bool commandIsValid = Enum.TryParse(commandName, true, out CommandType result);
+            if(commandIsValid) { return result; }
+            throw new ArgumentException("not valid command");
         }
         private List<string> ExtractCommandParameters(string commandLine)
         {

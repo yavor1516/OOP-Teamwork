@@ -10,12 +10,13 @@ namespace Tasks_Management.Models
     internal class Comment : IComment
     {
 
-        public Comment(string content, string task)
+        public Comment(string content, string author)
         {
-            
+            this.Author = author;
+            this.CommentText = content;
         }
-        public string Author => throw new NotImplementedException();
+        public string Author { get; }
 
-        public string CommentText => throw new NotImplementedException();
+        public string CommentText { get; }
     }
 }

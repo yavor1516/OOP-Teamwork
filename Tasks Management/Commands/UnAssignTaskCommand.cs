@@ -23,15 +23,15 @@ namespace Tasks_Management.Commands
             {
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: 3, Received: {this.CommandParameters.Count}");
             }
-            string taskName = CommandParameters[0];
+            int id = int.Parse(this.CommandParameters[0]);
             string memberFirstName = CommandParameters[1];
             string memberLastName = CommandParameters[2];
-            return this.UnassigneTaskForMember(taskName, memberFirstName, memberLastName);
+            return this.UnassigneTaskForMember(id, memberFirstName, memberLastName);
         }
 
-        private string UnassigneTaskForMember(string taskName,string memberFirstName,string memberLastName)
+        private string UnassigneTaskForMember(int id,string memberFirstName,string memberLastName)
         {
-            ITask task = this.Repository.GetTask(taskName);
+            ITask task = this.Repository.GetTask(id);
             IMember member = this.Repository.GetMember(memberFirstName, memberLastName);
             task.Assignee = null;
             member.Tasks.Remove(task);

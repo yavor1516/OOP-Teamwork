@@ -7,16 +7,16 @@ using Tasks_Management.Commands.Enums;
 
 namespace Tasks_Management.Models.Contracts
 {
-    public interface IBug
+    public interface IBug:ITask
     {
-        IList<string> steps { get; }
+        IList<string> Steps { get; }
 
-        Priority priority { get; }
+        Priority Priority { get; set; }
 
-        Severity severity { get; }
-        Status status { get; }
-        IMember assignee { get; }
-        IActivityHistory activityHistory{get;}
+        Severity Severity { get; set; }
+        BugStatus Status { get; set; }
+        IMember Assignee { get; }
+      
 
     }
 }

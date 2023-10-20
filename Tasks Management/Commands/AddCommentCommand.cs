@@ -20,31 +20,32 @@ namespace Tasks_Management.Commands
 
         protected override string ExecuteCommand()
         {
-            if (this.CommandParameters.Count != 2)
+            if (this.CommandParameters.Count != 3)
             {
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: 2, Received: {this.CommandParameters.Count}");
             }
-
-            string content = this.CommandParameters[0];
-            string task = this.CommandParameters[1];
-
-            return AddComment(content, task);
+            int task = int.Parse(this.CommandParameters[0]);
+            string author = this.CommandParameters[1];
+            string content = this.CommandParameters[2];
+          
+            
+            return AddComment(content, task,author);
         }
 
-        private string AddComment(string content, string taskName)
+        private string AddComment(string content, int id,string author)
         {
-            ITask task = this.Repository.GetTask(taskName);
+            ITask task = this.Repository.GetTask(id);
 
             if (task == null)
             {
-                throw new InvalidUserInputException($"Task {taskName} not found");
+                throw new InvalidUserInputException($"Task {task.Title} not found");
             }
 
-            IComment comment = new Comment(content, taskName);
+            IComment comment = new Comment(content,author);
 
             task.AddComment(comment);
 
-            return $"Comment added to task {taskName}: {content}";
+            return $"Comment added to task {task.Title}: {content}";
         }
     }
 

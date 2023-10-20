@@ -12,31 +12,31 @@ namespace Tasks_Management.Commands
 {
     internal class ChangeBugCommand : BaseCommand
     {
-        public ChangeBugCommand(IList<string> commandParameters, IRepository repository) 
+        public ChangeBugCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }
 
         protected override string ExecuteCommand()
         {
-            string BugName = CommandParameters[0];
-            string TargetParameter = CommandParameters[1];
-            string ChangeValueOfTargetParameter = CommandParameters[2];
+            int id = int.Parse(this.CommandParameters[0]);
+            string TargetParameter = this.CommandParameters[1];
+            string ChangeValueOfTargetParameter = this.CommandParameters[2];
 
             switch (TargetParameter)
             {
                 case "priority":
-                    return this.ChangePriority(BugName,ParsePriorityType(ChangeValueOfTargetParameter));
+                    return this.ChangePriority(id, ParsePriorityType(ChangeValueOfTargetParameter));
                 case "severity":
-                    return this.ChangeSeverity(BugName, ParseSeverityType(ChangeValueOfTargetParameter));
+                    return this.ChangeSeverity(id, ParseSeverityType(ChangeValueOfTargetParameter));
                 case "status":
-                    return this.ChangeStatus(BugName,ParseStatusType(ChangeValueOfTargetParameter));
+                    return this.ChangeStatus(id, ParseStatusType(ChangeValueOfTargetParameter));
 
                 default:
                     throw new NotImplementedException();
             }
             //Change the Priority/Severity/Status of a bug
-           
+
         }
         private Priority ParsePriorityType(string priority)
         {
@@ -50,36 +50,30 @@ namespace Tasks_Management.Commands
             Enum.TryParse(severity, true, out Severity result);
             return result;
         }
-        public Status ParseStatusType(string status)
+        public BugStatus ParseStatusType(string status)
         {
-            Enum.TryParse(status, true, out Status result);
+            Enum.TryParse(status, true, out BugStatus result);
             return result;
         }
-        private string ChangePriority(string BugName,Priority priority)
+        private string ChangePriority(int id, Priority priority)
         {
-            Bug bug = this.Repository.GetBug(BugName);
-            bug.activityHistory.Messages.Add($"Bug priority has been changed from {bug.priority} to {priority}");
-            ITask task = this.Repository.GetTask(BugName);
-            task.History.Messages.Add($"Bug priority has been changed from {bug.priority} to {priority}");
-            bug.priority = priority;
+            IBug bug = this.Repository.GetBug(id);
+            bug.History.Messages.Add($"Bug priority has been changed from {bug.Priority} to {priority}");
+            bug.Priority = priority;
             return string.Format($"Bug priority changed successfully!");
         }
-        private string ChangeSeverity(string bugName, Severity severity)
+        private string ChangeSeverity(int id, Severity severity)
         {
-            Bug bug = this.Repository.GetBug(bugName);
-            bug.activityHistory.Messages.Add($"Bug severity has been changed from {bug.severity} to {severity}");
-            ITask task = this.Repository.GetTask(bugName);
-            task.History.Messages.Add($"Bug severity has been changed from {bug.severity} to {severity}");
-            bug.severity = severity;
+            IBug bug = this.Repository.GetBug(id);
+            bug.History.Messages.Add($"Bug severity has been changed from {bug.Severity} to {severity}");
+            bug.Severity = severity;
             return string.Format($"Bug severity changed successfully!");
         }
-        private string ChangeStatus(string BugName,Status status)
+        private string ChangeStatus(int id, BugStatus bugStatus)
         {
-            Bug bug = this.Repository.GetBug(BugName);
-            bug.activityHistory.Messages.Add($"Bug status has been changed from {bug.status} to {status}");
-            ITask task = this.Repository.GetTask(BugName);
-            task.History.Messages.Add($"Bug status has been changed from {bug.status} to {status}");
-            bug.status = status;
+            IBug bug = this.Repository.GetBug(id);
+            bug.History.Messages.Add($"Bug status has been changed from {bug.Status} to {bugStatus}");
+            bug.Status = bugStatus;
             return string.Format($"Bug status changed successfully!");
 
         }

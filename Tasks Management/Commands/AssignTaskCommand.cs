@@ -18,15 +18,15 @@ namespace Tasks_Management.Commands
 
         protected override string ExecuteCommand()
         {
-            string TaskName = this.CommandParameters[0];
+            int id = int.Parse(this.CommandParameters[0]);
             string MemberFirstName = this.CommandParameters[1];
             string MemberLastName = this.CommandParameters[2];
-            return AssignTaskToMember(TaskName, MemberFirstName, MemberLastName);
+            return AssignTaskToMember(id, MemberFirstName, MemberLastName);
         }
 
-        private string AssignTaskToMember(string taskName,string firstNameMember,string lastNameMember)
+        private string AssignTaskToMember(int id,string firstNameMember,string lastNameMember)
         {
-            ITask task = Repository.GetTask(taskName);
+            ITask task = Repository.GetTask(id);
             IMember member = Repository.GetMember(firstNameMember, lastNameMember);
             task.Assignee = member;
             task.History.Messages.Add($"Task of type {task.Tasktype} has been assigned to {member.FirstName} {member.LastName}");

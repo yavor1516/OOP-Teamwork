@@ -22,13 +22,13 @@ namespace Tasks_Management.Models
         private string description;
         private List<Comment> comments;
 
-        public Task(int id, string title, string description, Status status , IActivityHistory history)
+        public Task(int id, string title, string description, IActivityHistory history)
         {
             UniqueID = id;
             Title = title;
             Description = description;
-            Status = status;
-            this.comments = comments != null ? comments.Cast<Comment>().ToList() : new List<Comment>();
+    
+            this.comments = new List<Comment>();
             this.History = new ActivityHistory();
         }
 
@@ -62,11 +62,10 @@ namespace Tasks_Management.Models
             }
         }
 
-        public IList<IComment> Comments => comments.Cast<IComment>().ToList();
+        public IList<IComment> Comments { get; }
 
         public IActivityHistory History { get; set; }
 
-        public Status Status { get; }
 
         public TaskType Tasktype { get; set; }
 

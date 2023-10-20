@@ -8,18 +8,20 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    internal class Story : Task ,IStory
+    public class Story : Task,IStory
     {
-        public Story(int id,string Title, string Description, Status Status,Priority priority,Size size,IActivityHistory history) 
-            : base(id,Title, Description, Status, history)
+        public Story(int id, string Title, string Description, StoryStatus status, Priority priority, Size size, IActivityHistory history)
+            : base(id, Title, Description, history)
         {
-
+            this.Status = status;
         }
 
-        public Priority Priority => throw new NotImplementedException();
+        public Priority Priority { get; set; }
 
-        public Size Size => throw new NotImplementedException();
+        public Size Size {get;set;}
 
-        public IMember Assignee => throw new NotImplementedException();
+        public IMember Assignee { get; set;}
+
+        public StoryStatus Status { get; set; }
     }
 }

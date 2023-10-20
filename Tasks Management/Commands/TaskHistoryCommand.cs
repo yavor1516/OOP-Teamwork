@@ -22,14 +22,14 @@ namespace Tasks_Management.Commands
             {
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: 1, Received: {this.CommandParameters.Count}");
             }
-            string name = this.CommandParameters[0];
-            return ShowTaskHistory(name);
+            int id = int.Parse(this.CommandParameters[0]);
+            return ShowTaskHistory(id);
 
         }
 
-        private string ShowTaskHistory(string name)
+        private string ShowTaskHistory(int id)
         {
-            ITask task = Repository.GetTask(name);
+            ITask task = Repository.GetTask(id);
             StringBuilder sb = new StringBuilder();
             foreach (string msg in task.History.Messages)
             {

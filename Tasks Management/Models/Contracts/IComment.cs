@@ -10,5 +10,6 @@ namespace Tasks_Management.Models.Contracts
     {
         string Author { get;}
         string CommentText { get;}
+
     }
 }

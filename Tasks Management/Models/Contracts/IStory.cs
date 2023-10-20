@@ -7,11 +7,12 @@ using Tasks_Management.Commands.Enums;
 
 namespace Tasks_Management.Models.Contracts
 {
-    public interface IStory
+    public interface IStory:ITask
     {
-        Priority Priority { get; }
-        Size Size { get; }
+        Priority Priority { get; set; }
+        Size Size { get; set;}
         IMember Assignee { get; }
+        StoryStatus Status { get; set; }
 
     }
 }

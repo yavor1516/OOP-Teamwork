@@ -50,14 +50,17 @@ namespace Tasks_Management.Core.Contracts
 
         IBoard GetBoard (string name);
 
-        ITask GetTask(string taskName);
-        Bug GetBug (string bugName);
-        IStory GetStory (string storyName);
-        IFeedBack GetFeedBack (string feedBackName);
+        ITask GetTask(int id);
+        IBug GetBug(int id);
+        IStory GetStory(int id);
+        IFeedBack GetFeedBack(int id);
+        //0 bug , 1 story ,2 feedback .1 bug
 
-        public IBug CreateBug (int id, string Title, string Description, Status Status, Priority priority,Severity severity,IActivityHistory history);
-        public IStory CreateStory (int id, string Title, string Description, Status Status,Priority priority,Size size,IActivityHistory history);
-        public IFeedBack CreateFeedBack (int id, string Title, string Description, Status Status , int rating, IActivityHistory history);
+
+
+        public IBug CreateBug (int id, string Title, string Description, BugStatus BugStatus, Priority priority,Severity severity,IActivityHistory history);
+        public IStory CreateStory (int id, string Title, string Description, StoryStatus Status,Priority priority,Size size,IActivityHistory history);
+        public IFeedBack CreateFeedBack (int id, string Title, string Description, FeedbackStatus FeedbackStatus, int rating, IActivityHistory history);
 
         public IComment CreateComment(string content, string task);
     }

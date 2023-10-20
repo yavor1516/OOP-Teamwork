@@ -72,40 +72,40 @@ namespace Tasks_Management.Core
             }
             throw new ArgumentException($"There is no team with name: {name}!");
         }
-        public Bug GetBug(string bugName)
+        public IBug GetBug(int id)
         {
             foreach(Bug bug in this.bugs)
             {
-                if (bug.Title.Equals(bugName, StringComparison.InvariantCultureIgnoreCase))
+                if (bug.UniqueID == id)
                 {
                     return bug;
                 }
             }
-            throw new ArgumentException($"There is no bug with name: {bugName}!");
+            throw new ArgumentException($"There is no bug with id: {id}!");
         }
 
-        public IStory GetStory(string storyName)
+        public IStory GetStory(int id)
         {
             foreach (Story story in this.stories)
             {
-                if (story.Title.Equals(storyName, StringComparison.InvariantCultureIgnoreCase))
+                if (story.UniqueID == id)
                 {
                     return story;
                 }
             }
-            throw new ArgumentException($"There is no story with name: {storyName}!");
+            throw new ArgumentException($"There is no story with id: {id}!");
         }
 
-        public IFeedBack GetFeedBack(string feedBackName)
+        public IFeedBack GetFeedBack(int id)
         {
             foreach (Feedback feedback in this.feedbacks)
             {
-                if (feedback.Title.Equals(feedBackName, StringComparison.InvariantCultureIgnoreCase))
+                if (feedback.UniqueID == id)
                 {
                     return feedback;
                 }
             }
-            throw new ArgumentException($"There is no feedback with name: {feedBackName}!");
+            throw new ArgumentException($"There is no feedback with id: {id}!");
         }
         public bool MemberExist(string firstName, string lastName)
         {
@@ -144,21 +144,20 @@ namespace Tasks_Management.Core
             return result;
         }
 
-        public IBug CreateBug(int id,string Title, string Description, Status Status,Priority priority,Severity severity,IActivityHistory history)
+        public IBug CreateBug(int id, string Title, string Description, BugStatus BugStatus, Priority priority, Severity severity, IActivityHistory history)
         {
-            return new Bug(id,Title, Description, Status,priority,severity, history);
+            return new Bug(id, Title, Description, BugStatus, priority, severity, history);
         }
 
-        public IStory CreateStory(int id,string Title, string Description, Status Status,Priority priority,Size size , IActivityHistory history)
+        public IStory CreateStory(int id, string Title, string Description, StoryStatus Status, Priority priority, Size size, IActivityHistory history)
         {
-            return new Story(id,Title, Description, Status,priority,size, history);
+            return new Story(id, Title, Description, Status, priority, size, history);
         }
 
-        public IFeedBack CreateFeedBack(int id, string Title, string Description, Status Status, int Rating,IActivityHistory history)
+        public IFeedBack CreateFeedBack(int id, string Title, string Description, FeedbackStatus FeedbackStatus, int Rating, IActivityHistory history)
         {
-            return new Feedback(id, Title, Description,Status, Rating, history);
+            return new Feedback(id, Title, Description, FeedbackStatus, Rating, history);
         }
-
         public IBoard CreateBoard(string name)
         {
             return new Board(name);
@@ -293,16 +292,16 @@ namespace Tasks_Management.Core
         {
             return member.History;
         }
-        public ITask GetTask(string taskName)
+        public ITask GetTask(int id)
         {
             foreach (ITask task in tasks) // Assuming 'tasks' is your list of tasks
             {
-                if (task.Title.Equals(taskName, StringComparison.InvariantCultureIgnoreCase))
+                if (task.UniqueID == id)
                 {
                     return task;
                 }
             }
-            throw new ArgumentException($"There is no task with the name: {taskName}");
+            throw new ArgumentException($"There is no task with id : {id}");
         }
 
 

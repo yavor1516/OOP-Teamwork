@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tasks_Management.Commands.Enums
 {
-    public enum Status
+    public enum StoryStatus
     {
         NotDone,
         InProgress,
