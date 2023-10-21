@@ -7,6 +7,7 @@ using Tasks_Management.Commands.Enums;
 using Tasks_Management.Core.Contracts;
 using Tasks_Management.Models.Contracts;
 using Tasks_Management.Models;
+using Tasks_Management.Exceptions;
 
 namespace Tasks_Management.Commands
 {
@@ -21,6 +22,10 @@ namespace Tasks_Management.Commands
       
         protected override string ExecuteCommand()
         {
+            if (this.CommandParameters.Count != 3)
+            {
+                throw new InvalidUserInputException($"Invalid number of arguments. Usage: ChangeStory [TaskID] [Priority/Size/Status] [NewValue]");
+            }
             int id = int.Parse(this.CommandParameters[0]);
             string TargetParameter = CommandParameters[1];
             string ChangeValueOfTargetParameter = CommandParameters[2];

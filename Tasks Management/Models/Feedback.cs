@@ -15,6 +15,7 @@ namespace Tasks_Management.Models
             :base(id,Title,Description,history)
         {
             this.Rating = rating;
+            Validator.ValidateFeedbackStatus(status, "Invalid feedback status.");
             this.Status = status;
         }
 

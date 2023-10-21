@@ -17,7 +17,7 @@ namespace Tasks_Management.Commands
         {
             if (this.CommandParameters.Count != 1)
             {
-                throw new InvalidUserInputException($"Invalid number of arguments. Expected: 1, Received: {this.CommandParameters.Count}");
+                throw new InvalidUserInputException($"Invalid number of arguments. Usage: CreateNewTeam [TeamName]");
             }
             string name = this.CommandParameters[0];
             return this.CreateTeam(name);

@@ -43,10 +43,8 @@ namespace Tasks_Management.Models
             get => title;
             set
             {
-                if (value.Length >= NameMinLength && value.Length <= NameMaxLength)
-                {
-                    title = value;
-                }
+                Validator.ValidateIntRange(value.Length, NameMinLength, NameMaxLength, InvalidNameError);
+                title = value;
             }
         }
 
@@ -55,10 +53,8 @@ namespace Tasks_Management.Models
             get => description;
             set
             {
-                if (value.Length >= DescriptionMinLength && value.Length <= DescriptionMaxLength)
-                {
-                    description = value;
-                }
+                Validator.ValidateIntRange(value.Length, DescriptionMinLength, DescriptionMaxLength, InvalidDescriptionError);
+                description = value;
             }
         }
 

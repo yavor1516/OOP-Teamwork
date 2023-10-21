@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tasks_Management.Commands.Enums;
 using Tasks_Management.Core.Contracts;
+using Tasks_Management.Exceptions;
 using Tasks_Management.Models;
 using Tasks_Management.Models.Contracts;
 
@@ -19,6 +20,10 @@ namespace Tasks_Management.Commands
 
         protected override string ExecuteCommand()
         {
+            if (this.CommandParameters.Count != 3)
+            {
+                throw new InvalidUserInputException($"Invalid number of arguments. Usage: ChangeBug [TaskID] [Priority/Severity/Status] [NewValue]");
+            }
             int id = int.Parse(this.CommandParameters[0]);
             string TargetParameter = this.CommandParameters[1];
             string ChangeValueOfTargetParameter = this.CommandParameters[2];

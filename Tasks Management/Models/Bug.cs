@@ -9,17 +9,12 @@ namespace Tasks_Management.Models
         public Bug(int id,string Title, string Description, BugStatus status, Priority priority, Severity severity , IActivityHistory history) 
             : base(id,Title,Description, history)
         {
-            if (Title.Length < NameMinLength || Title.Length > NameMaxLength)
-            {
-                throw new InvalidUserInputException(InvalidNameError);
-            }
 
-            if (Description.Length < DescriptionMinLength || Description.Length > DescriptionMaxLength)
-            {
-                throw new InvalidUserInputException(InvalidDescriptionError);
-            }
+            Validator.ValidateBugStatus(status, "Invalid bug status.");
             this.Status = status;
+            Validator.ValidatePriority(priority, "Invalid priority.");
             this.Priority = priority;
+            Validator.ValidateSeverity(severity, "Invalid severity.");
             this.Severity = severity;
             this.History = history;
             

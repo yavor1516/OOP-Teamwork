@@ -35,6 +35,7 @@ namespace Tasks_Management.Models
             }
             private set
             {
+                Validator.ValidateString(value, "Board name is not valid.");
                 Validator.ValidateIntRange(value.Length, NameMinLength, NameMaxLength, InvalidBoardError);
                 name = value;
             }

@@ -20,10 +20,7 @@ namespace Tasks_Management.Models
             get { return base.Description; }
             set 
             {
-                if (value.Length < DescriptionMinLength || value.Length > DescriptionMaxLength)
-                {
-                    throw new InvalidUserInputException("Title length is invalid");
-                }
+                Validator.ValidateIntRange(value.Length, DescriptionMinLength, DescriptionMaxLength, InvalidDescriptionError);                                
                 base.Description = value; }
         }
         public override string Title
@@ -31,10 +28,7 @@ namespace Tasks_Management.Models
             get { return base.Title; }
             set
             {
-                if (value.Length < NameMinLength || value.Length > NameMaxLength)
-                {
-                    throw new InvalidUserInputException("Title length is invalid");
-                }
+                Validator.ValidateIntRange(value.Length, NameMinLength, NameMaxLength, InvalidNameError);                
                 base.Title = value;
             }
         }
