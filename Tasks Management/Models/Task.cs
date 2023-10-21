@@ -32,13 +32,13 @@ namespace Tasks_Management.Models
             this.History = new ActivityHistory();
         }
 
-        public int Id
+        public virtual int Id
         {
             get => id;
             set => id = value;
         }
 
-        public string Title
+        public virtual string Title
         {
             get => title;
             set
@@ -50,7 +50,7 @@ namespace Tasks_Management.Models
             }
         }
 
-        public string Description
+        public virtual string Description
         {
             get => description;
             set
@@ -62,16 +62,16 @@ namespace Tasks_Management.Models
             }
         }
 
-        public IList<IComment> Comments { get; }
+        public virtual IList<IComment> Comments { get; }
 
         public IActivityHistory History { get; set; }
 
 
-        public TaskType Tasktype { get; set; }
+        public virtual TaskType Tasktype { get; set; }
 
-        public IMember Assignee { get; set; }
+        public virtual IMember Assignee { get; set; }
 
-        public void AddComment(IComment comment)
+        public virtual void AddComment(IComment comment)
         {
             if (comment != null)
             {

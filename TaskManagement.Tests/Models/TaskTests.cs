@@ -16,14 +16,13 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string longTitle = "ThisTitleIsWayTooLongToBeValidSoINeedToWriteSomethingMoreThan50DigitsAndIDontRealyKnowWhatToWriteToBeThisLong";
-            Status status = Status.Done;
             IActivityHistory history = new ActivityHistory();
 
             // Act & Assert
             Assert.ThrowsException<InvalidUserInputException>(() =>
             {
-                new Tasks_Management.Models.Task(id, longTitle, "Description", status, history);
-                
+                new TestTask(id, longTitle, "Description", history);
+
             });
         }
         [TestMethod]
@@ -32,13 +31,12 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string longTitle = "nope";
-            Status status = Status.Done;
             IActivityHistory history = new ActivityHistory();
 
             // Act & Assert
             Assert.ThrowsException<InvalidUserInputException>(() =>
             {
-                new Tasks_Management.Models.Task(id, longTitle, "Description", status, history);
+                new TestTask(id, longTitle, "Description", history);
 
             });
         }
@@ -48,13 +46,12 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string longTitle = "SomethingValid";
-            Status status = Status.Done;
             IActivityHistory history = new ActivityHistory();
 
             // Act & Assert
             Assert.ThrowsException<InvalidUserInputException>(() =>
             {
-                new Tasks_Management.Models.Task(id, longTitle, "Test", status, history);
+                new TestTask(id, longTitle, "Test", history);
 
             });
         }
@@ -64,14 +61,13 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string longTitle = "SomethingValid";
-            Status status = Status.Done;
             string description = new string('w', 501);
             IActivityHistory history = new ActivityHistory();
 
             // Act & Assert
             Assert.ThrowsException<InvalidUserInputException>(() =>
             {
-                new Tasks_Management.Models.Task(id, longTitle, description, status, history);
+                new TestTask(id, longTitle, description, history);
 
             });
         }
@@ -81,12 +77,11 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string validTitle = "ValidTitle";
-            Status status = Status.InProgress;
             IActivityHistory history = new ActivityHistory();
 
             // Act & Assert
-            Assert.AreEqual(validTitle, new Tasks_Management.Models.Task(id, validTitle, "Description", status, history).Title);
-            Assert.AreEqual("Description", new Tasks_Management.Models.Task(id, validTitle, "Description", status, history).Description);
+            Assert.AreEqual(validTitle, new TestTask(id, validTitle, "Description", history).Title);
+            Assert.AreEqual("Description", new TestTask(id, validTitle, "Description", history).Description);
         }
 
         [TestMethod]
@@ -95,9 +90,8 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string validTitle = "ValidTitle";
-            Status status = Status.InProgress;
             IActivityHistory history = new ActivityHistory();
-            Tasks_Management.Models.Task task = new Tasks_Management.Models.Task(id, validTitle, "Description", status, history);
+            Tasks_Management.Models.Task task = new TestTask(id, validTitle, "Description", history);
             IComment comment = new Comment("Sample Comment" ,"TaskHere");
 
             // Act
@@ -113,9 +107,8 @@ namespace TaskManagement.Tests.Models
             // Arrange
             int id = 1;
             string validTitle = "ValidTitle";
-            Status status = Status.InProgress;
             IActivityHistory history = new ActivityHistory();
-            Tasks_Management.Models.Task task = new Tasks_Management.Models.Task(id, validTitle, "Description", status, history);
+            Tasks_Management.Models.Task task = new TestTask(id, validTitle, "Description", history);
 
             // Act & Assert
             Assert.ThrowsException<InvalidUserInputException>(() =>

@@ -7,7 +7,6 @@ using Tasks_Management.Core.Contracts;
 using Tasks_Management.Models.Contracts;
 
 namespace TaskManagement.Tests.RepositoryTests;
-
 [TestClass]
 public class RepositoryTests
 {
@@ -95,18 +94,18 @@ public class RepositoryTests
     public void CreateBug_CreatesNewBug()
     {
         // Act
-        IBug bug = repository.CreateBug(1, "Critical Bug", "This is a critical bug", Status.Done, Priority.High, Severity.Critical, new ActivityHistory());
+        IBug bug = repository.CreateBug(1, "Critical Bug", "This is a critical bug", BugStatus.Fixed, Priority.High, Severity.Critical, new ActivityHistory());
 
         // Assert
         Assert.IsNotNull(bug);
-        Assert.AreEqual("Critical Bug", bug.assignee);
+        Assert.AreEqual("Critical Bug", bug.Assignee);
     }
 
     [TestMethod]
     public void CreateStory_CreatesNewStory()
     {
         // Act
-        IStory story = repository.CreateStory(1, "User Story", "This is a user story", Status.Done, Priority.Medium, Size.Large, new ActivityHistory());
+        IStory story = repository.CreateStory(1, "User Story", "This is a user story", StoryStatus.InProgress, Priority.Medium, Size.Large, new ActivityHistory());
 
         // Assert
         Assert.IsNotNull(story);
@@ -117,7 +116,7 @@ public class RepositoryTests
     public void CreateFeedBack_CreatesNewFeedback()
     {
         // Act
-        IFeedBack feedback = repository.CreateFeedBack(1, "Feedback on Product", "This is a productfeedback", Status.NotDone, 5, new ActivityHistory());
+        IFeedBack feedback = repository.CreateFeedBack(1, "Feedback on Product", "This is a productfeedback", FeedbackStatus.Scheduled, 5, new ActivityHistory());
 
         // Assert
         Assert.IsNotNull(feedback);
@@ -142,9 +141,8 @@ public class RepositoryTests
     {
         // Arrange
         int id = 1;
-        Status status = Status.InProgress;
         IActivityHistory history = new ActivityHistory();
-        Tasks_Management.Models.Task task = new Tasks_Management.Models.Task(id,"ValidTitle", "Description", status, history);
+        Tasks_Management.Models.Task task = new TestTask(id,"ValidTitle", "Description", history);
         // Act
         repository.AddTask(task);
 
@@ -156,7 +154,7 @@ public class RepositoryTests
     public void AddBug_AddsBugToList()
     {
         // Arrange
-        IBug bug = new Bug(1, "Critical Bug", "This is a critical bug", Status.Done, Priority.High, Severity.Critical, new ActivityHistory());
+        IBug bug = new Bug(1, "Critical Bug", "This is a critical bug", BugStatus.Active, Priority.High, Severity.Critical, new ActivityHistory());
 
         // Act
         repository.AddBug(bug);
@@ -169,7 +167,7 @@ public class RepositoryTests
     public void AddStory_AddsStoryToList()
     {
         // Arrange
-        IStory story = new Story(1, "User Story", "This is a user story", Status.Done, Priority.Medium, Size.Large, new ActivityHistory());
+        IStory story = new Story(1, "User Story", "This is a user story", StoryStatus.Done, Priority.Medium, Size.Large, new ActivityHistory());
 
         // Act
         repository.AddStory(story);
@@ -182,7 +180,7 @@ public class RepositoryTests
     public void AddFeedBack_AddsFeedbackToList()
     {
         // Arrange
-        IFeedBack feedback = new Feedback(1, "Feedback on Product", "This is a productfeedback", Status.InProgress, 5, new ActivityHistory());
+        IFeedBack feedback = new Feedback(1, "Feedback on Product", "This is a productfeedback", FeedbackStatus.Unscheduled, 5, new ActivityHistory());
 
         // Act
         repository.AddFeedBack(feedback);
@@ -228,13 +226,12 @@ public class RepositoryTests
     public void GetTask_ReturnsExistingTask()
     {
         int id = 1;
-        Status status = Status.InProgress;
         IActivityHistory history = new ActivityHistory();
-        Tasks_Management.Models.Task task = new Tasks_Management.Models.Task(id, "ValidTitle", "Description", status, history);
+        Tasks_Management.Models.Task task = new TestTask(id, "ValidTitle", "Description", history);
         repository.AddTask(task);
 
         // Act
-        ITask retrievedTask = repository.GetTask("Task 1");
+        ITask retrievedTask = repository.GetTask(1);
 
         // Assert
         Assert.IsNotNull(retrievedTask);
@@ -245,7 +242,7 @@ public class RepositoryTests
     public void GetTask_ThrowsExceptionForNonExistentTask()
     {
         // Act and Assert
-        Assert.ThrowsException<ArgumentException>(() => repository.GetTask("Nonexistent Task"));
+        Assert.ThrowsException<ArgumentException>(() => repository.GetTask(1));
     }
 
     [TestMethod]
@@ -339,9 +336,8 @@ public class RepositoryTests
     {
         // Arrange
         int id = 1;
-        Status status = Status.InProgress;
         IActivityHistory history = new ActivityHistory();
-        ITask task = new Tasks_Management.Models.Task(id, "ValidTitle", "Description", status, history);
+        ITask task = new TestTask(id, "ValidTitle", "Description", history);
         repository.AddTask(task);
 
         // Act
@@ -355,7 +351,7 @@ public class RepositoryTests
     public void AddBug_DoesNotAddDuplicateBugs()
     {
         // Arrange
-        IBug bug = new Bug(1, "Critical Bug", "This is a critical bug", Status.Done, Priority.High, Severity.Critical, new ActivityHistory());
+        IBug bug = new Bug(1, "Critical Bug", "This is a critical bug",BugStatus.Active, Priority.High, Severity.Critical, new ActivityHistory());
         repository.AddBug(bug);
 
         // Act
@@ -369,7 +365,7 @@ public class RepositoryTests
     public void AddStory_DoesNotAddDuplicateStories()
     {
         // Arrange
-        IStory story = new Story(1, "User Story", "This is a user story", Status.Done, Priority.Medium, Size.Large, new ActivityHistory());
+        IStory story = new Story(1, "User Story", "This is a user story", StoryStatus.InProgress, Priority.Medium, Size.Large, new ActivityHistory());
         repository.AddStory(story);
 
         // Act
@@ -383,7 +379,7 @@ public class RepositoryTests
     public void AddFeedBack_DoesNotAddDuplicateFeedbacks()
     {
         // Arrange
-        IFeedBack feedback = new Feedback(1, "Feedback on Product", "This is a product feedback", Status.InProgress, 5, new ActivityHistory());
+        IFeedBack feedback = new Feedback(1, "Feedback on Product", "This is a product feedback", FeedbackStatus.Scheduled, 5, new ActivityHistory());
         repository.AddFeedBack(feedback);
 
         // Act

@@ -10,7 +10,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Commands
 {
-    internal class ChangeFeedBackCommand : BaseCommand
+    public class ChangeFeedBackCommand : BaseCommand
     {
         public ChangeFeedBackCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)

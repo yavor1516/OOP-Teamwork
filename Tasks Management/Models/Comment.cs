@@ -12,11 +12,23 @@ namespace Tasks_Management.Models
 
         public Comment(string content, string author)
         {
-            this.Author = author;
-            this.CommentText = content;
+            if (string.IsNullOrEmpty(content))
+            {
+                throw new ArgumentNullException(nameof(content), "Comment text cannot be null or empty.");
+            }
+
+            if (string.IsNullOrEmpty(author))
+            {
+                throw new ArgumentNullException("Author name cannot be null or empty.", nameof(author));
+            }
+
+            Author = author;
+            CommentText = content;
         }
+
         public string Author { get; }
 
         public string CommentText { get; }
+
     }
 }

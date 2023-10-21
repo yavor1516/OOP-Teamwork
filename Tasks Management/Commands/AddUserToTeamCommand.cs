@@ -10,7 +10,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Commands
 {
-    internal class AddUserToTeamCommand : BaseCommand
+    public class AddUserToTeamCommand : BaseCommand
     {
         public AddUserToTeamCommand(IList<string> commandParameters, IRepository repository) : 
             base(commandParameters, repository)

@@ -41,10 +41,11 @@ namespace Tasks_Management.Models
         public string LastName => lastName;
 
 
-        private bool IsNameValid(string firstName)
+        public bool IsNameValid(string firstName)
         {
             return !string.IsNullOrEmpty(firstName) && firstName.Length >= 5 && firstName.Length <= 15;
-        } private bool IsLastNameValid(string lastName)
+        } 
+        public bool IsLastNameValid(string lastName)
         {
             return !string.IsNullOrEmpty(lastName) && lastName.Length >= 5 && lastName.Length <= 15;
         } 

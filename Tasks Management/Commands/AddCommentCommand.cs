@@ -11,7 +11,7 @@ using Tasks_Management.Models;
 
 namespace Tasks_Management.Commands
 {
-    internal class AddCommentCommand : BaseCommand
+    public class AddCommentCommand : BaseCommand
     {
         public AddCommentCommand(IList<string> commandParameters, IRepository repository) :
            base(commandParameters, repository)

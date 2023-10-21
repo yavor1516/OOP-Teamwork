@@ -5,7 +5,7 @@ using Tasks_Management.Models;
 
 namespace TaskManagement.Tests
 {
-    [TestClass]
+   [TestClass]
     public class BugTests
     {
         [TestMethod]
@@ -15,7 +15,7 @@ namespace TaskManagement.Tests
             int id = 1;
             string title = "Test Title";
             string description = "Test Description";
-            Status status = Status.Done;
+            BugStatus status = BugStatus.Active;
             Priority priority = Priority.High;
             Severity severity = Severity.Major;
             IActivityHistory history = new ActivityHistory();
@@ -28,9 +28,9 @@ namespace TaskManagement.Tests
             Assert.AreEqual(title, bug.Title);
             Assert.AreEqual(description, bug.Description);
             Assert.AreEqual(status, bug.Status);
-            Assert.AreEqual(priority, bug.priority);
-            Assert.AreEqual(severity, bug.severity);
-            Assert.AreSame(history, bug.activityHistory);
+            Assert.AreEqual(priority, bug.Priority);
+            Assert.AreEqual(severity, bug.Severity);
+            Assert.AreSame(history, bug.History);//ToDo
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace TaskManagement.Tests
             int id = 1;
             string invalidTitle = "no"; 
             string description = "Bug Description";
-            Status status = Status.Done;
+            BugStatus status = BugStatus.Active;
             Priority priority = Priority.High;
             Severity severity = Severity.Major;
             IActivityHistory history = new ActivityHistory();
@@ -57,7 +57,7 @@ namespace TaskManagement.Tests
             int id = 1;
             string title = "Bug Title";
             string invalidDescription = "no";
-            Status status = Status.Done;
+            BugStatus status = BugStatus.Active;
             Priority priority = Priority.High;
             Severity severity = Severity.Major;
             IActivityHistory history = new ActivityHistory();
@@ -74,7 +74,7 @@ namespace TaskManagement.Tests
             int id = 1;
             string invalidTitle = new string('A', 51);
             string description = "Bug Description";
-            Status status = Status.Done;
+            BugStatus status = BugStatus.Active;
             Priority priority = Priority.High;
             Severity severity = Severity.Major;
             IActivityHistory history = new ActivityHistory();
@@ -91,7 +91,7 @@ namespace TaskManagement.Tests
             int id = 1;
             string title = "Bug Title";
             string invalidDescription = new string('A', 501);
-            Status status = Status.Done;
+            BugStatus status = BugStatus.Active;
             Priority priority = Priority.High;
             Severity severity = Severity.Major;
             IActivityHistory history = new ActivityHistory();

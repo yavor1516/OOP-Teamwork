@@ -9,7 +9,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Commands
 {
-    internal class AssignTaskCommand : BaseCommand
+   public class AssignTaskCommand : BaseCommand
     {
         public AssignTaskCommand(IList<string> commandParameters, IRepository repository) 
             : base(commandParameters, repository)

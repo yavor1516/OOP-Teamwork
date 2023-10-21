@@ -1,4 +1,5 @@
 ﻿using Tasks_Management.Commands.Enums;
+using Tasks_Management.Exceptions;
 using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
@@ -8,10 +9,19 @@ namespace Tasks_Management.Models
         public Bug(int id,string Title, string Description, BugStatus status, Priority priority, Severity severity , IActivityHistory history) 
             : base(id,Title,Description, history)
         {
+            if (Title.Length < NameMinLength || Title.Length > NameMaxLength)
+            {
+                throw new InvalidUserInputException(InvalidNameError);
+            }
+
+            if (Description.Length < DescriptionMinLength || Description.Length > DescriptionMaxLength)
+            {
+                throw new InvalidUserInputException(InvalidDescriptionError);
+            }
             this.Status = status;
             this.Priority = priority;
             this.Severity = severity;
-          //  this.History = history;
+            this.History = history;
             
         }
 
