@@ -37,7 +37,7 @@ namespace TaskManagement.Tests.Commands
         {
             // Arrange
             var repository = new Repository();
-            var commandParameters = new List<string> { "1", "John Doe" };
+            var commandParameters = new List<string> { "1", "Pepi Kirow" };
             var command = new AddCommentCommand(commandParameters, repository);
 
             // Act & Assert
@@ -49,7 +49,7 @@ namespace TaskManagement.Tests.Commands
         {
             // Arrange
             var repository = new Repository();
-            var commandParameters = new List<string> { "1", "John Doe", "This is a comment" };
+            var commandParameters = new List<string> { "1", "Pepi Kirow", "This is a comment" };
             var command = new AddCommentCommand(commandParameters, repository);
 
             // Act & Assert
