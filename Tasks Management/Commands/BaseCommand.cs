@@ -24,7 +24,7 @@ namespace Tasks_Management.Commands
 
         protected abstract string ExecuteCommand();
 
-        protected int ParseIntParameter(string value, string parameterName)
+        public virtual int ParseIntParameter(string value, string parameterName)
         {
             if (int.TryParse(value, out int result))
             {
