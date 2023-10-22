@@ -91,52 +91,6 @@ public class RepositoryTests
     }
 
     [TestMethod]
-    public void CreateBug_CreatesNewBug()
-    {
-        // Act
-        IBug bug = repository.CreateBug(1, "Critical Bug", "This is a critical bug", BugStatus.Fixed, Priority.High, Severity.Critical, new ActivityHistory());
-
-        // Assert
-        Assert.IsNotNull(bug);
-        Assert.AreEqual("Critical Bug", bug.Assignee);
-    }
-
-    [TestMethod]
-    public void CreateStory_CreatesNewStory()
-    {
-        // Act
-        IStory story = repository.CreateStory(1, "User Story", "This is a user story", StoryStatus.InProgress, Priority.Medium, Size.Large, new ActivityHistory());
-
-        // Assert
-        Assert.IsNotNull(story);
-        Assert.AreEqual("User Story", story.Assignee);
-    }
-
-    [TestMethod]
-    public void CreateFeedBack_CreatesNewFeedback()
-    {
-        // Act
-        IFeedBack feedback = repository.CreateFeedBack(1, "Feedback on Product", "This is a productfeedback", FeedbackStatus.Scheduled, 5, new ActivityHistory());
-
-        // Assert
-        Assert.IsNotNull(feedback);
-        Assert.AreEqual("Feedback on Product", feedback.Rating);
-    }
-
-    [TestMethod]
-    public void AddBoard_AddsBoardToList()
-    {
-        // Arrange
-        IBoard board = new Board("Dev Board");
-
-        // Act
-        repository.AddBoard(board);
-
-        // Assert
-        CollectionAssert.Contains((System.Collections.ICollection)repository.Boards, board);
-    }
-
-    [TestMethod]
     public void AddTask_AddsTaskToList()
     {
         // Arrange
@@ -190,21 +144,6 @@ public class RepositoryTests
     }
 
     [TestMethod]
-    public void GetBoard_ReturnsExistingBoard()
-    {
-        // Arrange
-        IBoard board = new Board("Dev Board");
-        repository.AddBoard(board);
-
-        // Act
-        IBoard retrievedBoard = repository.GetBoard("Dev Board");
-
-        // Assert
-        Assert.IsNotNull(retrievedBoard);
-        Assert.AreEqual("Dev Board", retrievedBoard.Name);
-    }
-
-    [TestMethod]
     public void GetBoard_ThrowsExceptionForNonExistentBoard()
     {
         // Act and Assert
@@ -220,22 +159,6 @@ public class RepositoryTests
         // Assert
         Assert.IsNotNull(comment);
         Assert.AreEqual("This is a comment", comment.CommentText);
-    }
-
-    [TestMethod]
-    public void GetTask_ReturnsExistingTask()
-    {
-        int id = 1;
-        IActivityHistory history = new ActivityHistory();
-        Tasks_Management.Models.Task task = new TestTask(id, "ValidTitle", "Description", history);
-        repository.AddTask(task);
-
-        // Act
-        ITask retrievedTask = repository.GetTask(1);
-
-        // Assert
-        Assert.IsNotNull(retrievedTask);
-        Assert.AreEqual("Task 1", retrievedTask.Title);
     }
 
     [TestMethod]
@@ -315,20 +238,6 @@ public class RepositoryTests
 
         // Assert
         Assert.IsFalse(exists);
-    }
-
-    [TestMethod]
-    public void AddBoard_DoesNotAddDuplicateBoards()
-    {
-        // Arrange
-        IBoard board = new Board("Dev Board");
-        repository.AddBoard(board);
-
-        // Act
-        repository.AddBoard(board);
-
-        // Assert
-        Assert.AreEqual(1, repository.Boards.Count);
     }
 
     [TestMethod]

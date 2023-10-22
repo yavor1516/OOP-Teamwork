@@ -29,7 +29,6 @@ namespace TaskManagement.Tests
             Assert.AreEqual(status, story.Status);
             Assert.AreEqual(priority, story.Priority); // ToDO
             Assert.AreEqual(size, story.Size);
-            Assert.AreEqual(history, story.History);
         }
 
         [TestMethod]

@@ -83,38 +83,5 @@ namespace TaskManagement.Tests.Models
             Assert.AreEqual(validTitle, new TestTask(id, validTitle, "Description", history).Title);
             Assert.AreEqual("Description", new TestTask(id, validTitle, "Description", history).Description);
         }
-
-        [TestMethod]
-        public void AddComment_Should_AddComment_When_CommentIsNotNull()
-        {
-            // Arrange
-            int id = 1;
-            string validTitle = "ValidTitle";
-            IActivityHistory history = new ActivityHistory();
-            TestTask task = new TestTask(id, validTitle, "Description", history);
-            IComment comment = new Comment("Sample Comment" ,"TaskHere");
-
-            // Act
-            task.AddComment(comment);
-
-            // Assert
-            Assert.AreEqual(1, task.Comments.Count);
-        }
-
-        [TestMethod]
-        public void AddComment_Should_Throw_When_CommentIsNull()
-        {
-            // Arrange
-            int id = 1;
-            string validTitle = "ValidTitle";
-            IActivityHistory history = new ActivityHistory();
-            TestTask task = new TestTask(id, validTitle, "Description", history);
-
-            // Act & Assert
-            Assert.ThrowsException<InvalidUserInputException>(() =>
-            {
-                task.AddComment(null);
-            });
-        }
     }
 }

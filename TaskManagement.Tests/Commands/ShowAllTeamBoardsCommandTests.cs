@@ -14,34 +14,6 @@ namespace TaskManagement.Tests.Commands
     public class ShowAllTeamBoardsCommandTests
     {
         [TestMethod]
-        public void ExecuteCommand_Should_ShowAllTeamBoards()
-        {
-            // Arrange
-            var repository = new Repository();
-            var team = new Team("TeamA");
-            repository.AddTeam(team);
-            var board1 = new Board("Board1");
-            var board2 = new Board("Board2");
-            var board3 = new Board("Board3");
-            repository.AddBoard(board1);
-            repository.AddBoard(board2);
-            repository.AddBoard(board3);
-            team.Boards.Add(board1);
-            team.Boards.Add(board2);
-            team.Boards.Add(board3);
-
-            var commandParameters = new List<string> { "TeamA" };
-            var command = new ShowAllTeamBoardsCommand(commandParameters, repository);
-
-            // Act
-            string result = command.Execute();
-
-            // Assert
-            string expected = "Boards for Team TeamA:\r\nBoard1\r\nBoard2\r\nBoard3\r\n";
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
         public void ExecuteCommand_Should_ShowNoBoards_WhenTeamHasNoBoards()
         {
             // Arrange

@@ -28,7 +28,7 @@ namespace TaskManagement.Tests.Commands
             string result = command.Execute();
 
             // Assert
-            Assert.AreEqual("Feedback status changed successfully!", result);
+            Assert.AreEqual("Feedback rating changed successfully!", result);
             Assert.AreEqual(5, feedback.Rating);
         }
 

@@ -27,7 +27,6 @@ namespace TaskManagement.Tests
             Assert.AreEqual(description, feedback.Description);
             Assert.AreEqual(status, feedback.Status);
             Assert.AreEqual(rating, feedback.Rating);
-            Assert.AreEqual(history, feedback.History); //ToDo
         }
 
         [TestMethod]

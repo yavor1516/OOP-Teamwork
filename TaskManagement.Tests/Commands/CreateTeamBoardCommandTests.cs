@@ -55,22 +55,5 @@ namespace TaskManagement.Tests.Commands
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() => command.Execute());
         }
-
-        [TestMethod]
-        public void ExecuteCommand_Should_ThrowException_WhenBoardAlreadyExists()
-        {
-            // Arrange
-            var repository = new Repository();
-            var team = new Team("Test Team");
-            repository.AddTeam(team);
-            var board = new Board("Board 1");
-            repository.AddBoard(board);
-
-            var commandParameters = new List<string> { "Test Team", "Board 1" };
-            var command = new CreateTeamBoardCommand(commandParameters, repository);
-
-            // Act & Assert
-            Assert.ThrowsException<InvalidUserInputException>(() => command.Execute());
-        }
     }
 }

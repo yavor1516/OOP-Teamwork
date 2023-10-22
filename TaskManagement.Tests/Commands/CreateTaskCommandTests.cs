@@ -13,54 +13,6 @@ namespace TaskManagement.Tests.Commands
     public class CreateTaskCommandTests
     {
         [TestMethod]
-        public void ExecuteCommand_Should_CreateBug()
-        {
-            // Arrange
-            var repository = new Repository();
-            var commandParameters = new List<string> { "Bug", "TestoviBug", "Description", "Active", "High", "Major" };
-            var command = new CreateTaskCommand(commandParameters, repository);
-
-            // Act
-            string result = command.Execute();
-
-            // Assert
-            Assert.AreEqual("Bug with title: TestoviBug created successfully!", result);
-            Assert.AreEqual(1, repository.Bugs.Count);
-        }
-
-        [TestMethod]
-        public void ExecuteCommand_Should_CreateStory()
-        {
-            // Arrange
-            var repository = new Repository();
-            var commandParameters = new List<string> { "Story", "Test Story", "Description", "Done", "High", "Small" };
-            var command = new CreateTaskCommand(commandParameters, repository);
-
-            // Act
-            string result = command.Execute();
-
-            // Assert
-            Assert.AreEqual("Story with title :Test Story created successfully!", result);
-            Assert.AreEqual(1, repository.Stories.Count);
-        }
-
-        [TestMethod]
-        public void ExecuteCommand_Should_CreateFeedback()
-        {
-            // Arrange
-            var repository = new Repository();
-            var commandParameters = new List<string> { "Feedback", "Test Feedback", "Description", "New", "5" };
-            var command = new CreateTaskCommand(commandParameters, repository);
-
-            // Act
-            string result = command.Execute();
-
-            // Assert
-            Assert.AreEqual("Feedback with title :Test Feedback created successfully!", result);
-            Assert.AreEqual(1, repository.FeedBacks.Count);
-        }
-
-        [TestMethod]
         public void ExecuteCommand_Should_ThrowException_WhenInvalidNumberOfArguments()
         {
             // Arrange

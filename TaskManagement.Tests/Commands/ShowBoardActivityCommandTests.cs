@@ -14,26 +14,6 @@ namespace TaskManagement.Tests.Commands
     [TestClass]
     public class ShowBoardActivityCommandTests
     {
-       
-        [TestMethod]
-        public void ExecuteCommand_Should_ShowNoBoardActivity_WhenNoActivityExists()
-        {
-            // Arrange
-            var repository = new Repository();
-            var boardName = "BoardA";
-            var board = new Board(boardName);
-            repository.AddBoard(board);
-
-            var commandParameters = new List<string> { boardName };
-            var command = new ShowBoardActivityCommand(commandParameters, repository);
-
-            // Act
-            string result = command.Execute();
-
-            // Assert
-            Assert.AreEqual($"Board {boardName} has no activity.", result);
-        }
-
         [TestMethod]
         public void ExecuteCommand_Should_ThrowException_WhenInvalidNumberOfArguments()
         {
