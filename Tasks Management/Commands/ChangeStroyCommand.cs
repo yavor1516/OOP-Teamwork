@@ -11,7 +11,7 @@ using Tasks_Management.Exceptions;
 
 namespace Tasks_Management.Commands
 {
-    internal class ChangeStroyCommand : BaseCommand
+    public class ChangeStroyCommand : BaseCommand
     {
         public ChangeStroyCommand(IList<string> commandParameters, IRepository repository) 
             : base(commandParameters, repository)

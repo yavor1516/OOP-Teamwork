@@ -10,7 +10,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Commands
 {
-    internal class ShowUserActivityCommand:BaseCommand
+    public class ShowUserActivityCommand:BaseCommand
     {
             public ShowUserActivityCommand(IList<string> commandParameters, IRepository repository) :
                base(commandParameters, repository)

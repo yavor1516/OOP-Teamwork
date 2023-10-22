@@ -1,3 +1,4 @@
+using Tasks_Management.Exceptions;
 using Tasks_Management.Models;
 
 namespace TaskManagement.Tests
@@ -24,55 +25,56 @@ namespace TaskManagement.Tests
         }
 
         [TestMethod]
-        public void IsNameValid_Should_ReturnTrue_WhenNameIsValid()
+        public void FirstName_Should_SetValidName()
         {
             // Arrange
             var member = new Member("Mirkata", "Pablo");
 
             // Act
-            bool isValid = member.IsNameValid("ValidName");
+            member.FirstName = "ValidName";
 
             // Assert
-            Assert.IsTrue(isValid);
+            Assert.AreEqual("ValidName", member.FirstName);
         }
 
         [TestMethod]
-        public void IsNameValid_Should_ReturnFalse_WhenNameIsInvalid()
+        public void FirstName_Should_ThrowException_WhenInvalidName()
         {
             // Arrange
             var member = new Member("Mirkata", "Pablo");
 
-            // Act
-            bool isInvalid = member.IsNameValid("Inv");
-
-            // Assert
-            Assert.IsFalse(isInvalid);
+            // Act & Assert
+            Assert.ThrowsException<InvalidUserInputException>(() =>
+            {
+                member.FirstName = "Inv";
+            });
         }
 
         [TestMethod]
-        public void IsLastNameValid_Should_ReturnTrue_WhenLastNameIsValid()
+        public void LastName_Should_SetValidName()
         {
             // Arrange
             var member = new Member("Mirkata", "Pablo");
 
             // Act
-            bool isValid = member.IsLastNameValid("ValidName");
+            member.LastName = "ValidName";
 
             // Assert
-            Assert.IsTrue(isValid);
+            Assert.AreEqual("ValidName", member.LastName);
         }
 
         [TestMethod]
-        public void IsLastNameValid_Should_ReturnFalse_WhenLastNameIsInvalid()
+        public void LastName_Should_ThrowException_WhenInvalidName()
         {
             // Arrange
             var member = new Member("Mirkata", "Pablo");
 
-            // Act
-            bool isInvalid = member.IsLastNameValid("Inv");
-
-            // Assert
-            Assert.IsFalse(isInvalid);
+            // Act & Assert
+            Assert.ThrowsException<InvalidUserInputException>(() =>
+            {
+                member.LastName = "Inv";
+            });
         }
     }
+
 }

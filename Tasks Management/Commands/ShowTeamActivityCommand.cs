@@ -11,7 +11,7 @@ using Tasks_Management.Models;
 
 namespace Tasks_Management.Commands
 {
-    internal class ShowTeamActivityCommand:BaseCommand
+    public class ShowTeamActivityCommand:BaseCommand
     {
         public ShowTeamActivityCommand(IList<string> commandParameters, IRepository repository) :
               base(commandParameters, repository)

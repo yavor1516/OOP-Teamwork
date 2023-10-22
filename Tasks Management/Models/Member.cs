@@ -8,7 +8,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Models
 {
-    internal class Member : IMember
+    public class Member : IMember
     {
         private static readonly int NAME_MIN_LENGTH = 5;
         private static readonly int NAME_MAX_LENGTH = 15;

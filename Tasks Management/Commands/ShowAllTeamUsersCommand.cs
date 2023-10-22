@@ -12,7 +12,7 @@ using Tasks_Management.Models;
 
 namespace Tasks_Management.Commands
 {
-    internal class ShowAllTeamUsersCommand:BaseCommand
+    public class ShowAllTeamUsersCommand:BaseCommand
     {
         public ShowAllTeamUsersCommand(IList<string> commandParameters, IRepository repository) :
            base(commandParameters, repository)

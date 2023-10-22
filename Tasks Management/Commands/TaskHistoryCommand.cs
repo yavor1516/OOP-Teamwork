@@ -9,7 +9,7 @@ using Tasks_Management.Models.Contracts;
 
 namespace Tasks_Management.Commands
 {
-    internal class TaskHistoryCommand : BaseCommand
+    public class TaskHistoryCommand : BaseCommand
     {
         public TaskHistoryCommand(IList<string> commandParameters, IRepository repository) 
             : base(commandParameters, repository)
