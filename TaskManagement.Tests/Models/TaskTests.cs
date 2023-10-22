@@ -91,7 +91,7 @@ namespace TaskManagement.Tests.Models
             int id = 1;
             string validTitle = "ValidTitle";
             IActivityHistory history = new ActivityHistory();
-            Tasks_Management.Models.Task task = new TestTask(id, validTitle, "Description", history);
+            TestTask task = new TestTask(id, validTitle, "Description", history);
             IComment comment = new Comment("Sample Comment" ,"TaskHere");
 
             // Act
@@ -108,7 +108,7 @@ namespace TaskManagement.Tests.Models
             int id = 1;
             string validTitle = "ValidTitle";
             IActivityHistory history = new ActivityHistory();
-            Tasks_Management.Models.Task task = new TestTask(id, validTitle, "Description", history);
+            TestTask task = new TestTask(id, validTitle, "Description", history);
 
             // Act & Assert
             Assert.ThrowsException<InvalidUserInputException>(() =>

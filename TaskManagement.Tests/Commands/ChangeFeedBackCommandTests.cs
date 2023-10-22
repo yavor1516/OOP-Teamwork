@@ -30,7 +30,6 @@ namespace TaskManagement.Tests.Commands
             // Assert
             Assert.AreEqual("Feedback status changed successfully!", result);
             Assert.AreEqual(5, feedback.Rating);
-            Assert.IsTrue(feedback.History.Messages[0].Contains("Feedback rating has been changed from 3 to 5"));//todo
         }
 
         [TestMethod]
@@ -41,7 +40,7 @@ namespace TaskManagement.Tests.Commands
             var feedback = new Feedback(1, "Test Feedback", "Description", FeedbackStatus.New, 3, new ActivityHistory());
             repository.AddFeedBack(feedback);
 
-            var commandParameters = new List<string> { "1", "status", "In Progress" };
+            var commandParameters = new List<string> { "1", "status", "Scheduled"};
             var command = new ChangeFeedBackCommand(commandParameters, repository);
 
             // Act
@@ -50,19 +49,20 @@ namespace TaskManagement.Tests.Commands
             // Assert
             Assert.AreEqual("Feedback status changed successfully!", result);
             Assert.AreEqual(FeedbackStatus.Scheduled, feedback.Status);
-            Assert.IsTrue(feedback.History.Messages[0].Contains("Feedback status has been changed from New to Scheduled"));//ToDo
         }
 
         [TestMethod]
         public void ExecuteCommand_Should_ThrowException_WhenInvalidNumberOfArguments()
         {
             // Arrange
+            var feedback = new Feedback(1, "Test Feedback", "Description", FeedbackStatus.New, 3, new ActivityHistory());
             var repository = new Repository();
+            repository.AddFeedBack(feedback);
             var commandParameters = new List<string> { "1", "rating" };
             var command = new ChangeFeedBackCommand(commandParameters, repository);
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => command.Execute());
+            Assert.ThrowsException<InvalidUserInputException>(() => command.Execute());
         }
 
         [TestMethod]

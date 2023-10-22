@@ -52,7 +52,7 @@ namespace TaskManagement.Tests.Commands
             string result = command.Execute();
 
             // Assert
-            string expected = $"{firstName + lastName} has no activity.";
+            string expected = $"User {firstName +' '+ lastName} has no activity.";
             Assert.AreEqual(expected, result);
         }
 

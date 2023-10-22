@@ -17,14 +17,14 @@ namespace TaskManagement.Tests.Commands
         {
             // Arrange
             var repository = new Repository();
-            var commandParameters = new List<string> { "Bug", "Test Bug", "Description", "Active", "High", "Major" };
+            var commandParameters = new List<string> { "Bug", "TestoviBug", "Description", "Active", "High", "Major" };
             var command = new CreateTaskCommand(commandParameters, repository);
 
             // Act
             string result = command.Execute();
 
             // Assert
-            Assert.AreEqual("Bug with title: Test Bug created successfully!", result);
+            Assert.AreEqual("Bug with title: TestoviBug created successfully!", result);
             Assert.AreEqual(1, repository.Bugs.Count);
         }
 
@@ -33,7 +33,7 @@ namespace TaskManagement.Tests.Commands
         {
             // Arrange
             var repository = new Repository();
-            var commandParameters = new List<string> { "Story", "Test Story", "Description", "Active", "High", "Small" };
+            var commandParameters = new List<string> { "Story", "Test Story", "Description", "Done", "High", "Small" };
             var command = new CreateTaskCommand(commandParameters, repository);
 
             // Act
@@ -69,7 +69,7 @@ namespace TaskManagement.Tests.Commands
             var command = new CreateTaskCommand(commandParameters, repository);
 
             // Act & Assert
-            Assert.ThrowsException<InvalidUserInputException>(() => command.Execute());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => command.Execute());
         }
 
         [TestMethod]

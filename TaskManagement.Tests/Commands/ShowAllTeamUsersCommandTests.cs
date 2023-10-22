@@ -36,7 +36,7 @@ namespace TaskManagement.Tests.Commands
             string result = command.Execute();
 
             // Assert
-            string expected = "TeamA includes Valentin Kirow, Georgi Terziew";
+            string expected = "TeamA includes Valentin Kirow, Georgi Terziew, Kristin Kirlewa";
             Assert.AreEqual(expected, result);
         }
 

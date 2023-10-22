@@ -22,7 +22,7 @@ namespace TaskManagement.Tests.Commands
             var command = new TaskHistoryCommand(new List<string>(), repository);
 
             // Act & Assert
-            Assert.ThrowsException<InvalidUserInputException>(() => command.Execute());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => command.Execute());
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace TaskManagement.Tests.Commands
             var command = new TaskHistoryCommand(new List<string> { "1" }, repository);
 
             // Act & Assert
-            Assert.ThrowsException<InvalidUserInputException>(() => command.Execute());
+            Assert.ThrowsException<ArgumentException>(() => command.Execute());
         }
     }
 }

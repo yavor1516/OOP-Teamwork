@@ -55,9 +55,9 @@ namespace Tasks_Management.Commands
         private string ChangeRating(int id, int rating)
         {
             IFeedBack feedback = this.Repository.GetFeedBack(id);
-            feedback.History.Messages.Add($"Feedback status has been changed from {feedback.Rating} to {rating}");
+            feedback.History.Messages.Add($"Feedback rating has been changed from {feedback.Rating} to {rating}");
             feedback.Rating = rating;
-            return string.Format($"Feedback status changed successfully!");
+            return string.Format($"Feedback rating changed successfully!");
 
         }
     }

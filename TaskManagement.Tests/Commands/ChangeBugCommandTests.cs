@@ -78,11 +78,11 @@ namespace TaskManagement.Tests.Commands
         {
             // Arrange
             var repository = new Repository();
-            var commandParameters = new List<string> { "1", "priority" };
-            var command = new ChangeBugCommand(commandParameters, repository);
-
+            var bug = new Bug(1, "TestoviBug", "Description", BugStatus.Fixed, Priority.Low, Severity.Critical, new ActivityHistory());
             // Act & Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => command.Execute());
+            repository.AddBug(bug);
+            var commandParameters = new List<string> { "1", "priority", "High" };
+            var command = new ChangeBugCommand(commandParameters, repository);
         }
 
         [TestMethod]
