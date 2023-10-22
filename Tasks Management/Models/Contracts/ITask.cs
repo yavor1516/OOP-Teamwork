@@ -22,6 +22,8 @@ namespace Tasks_Management.Models.Contracts
         
         TaskType Tasktype { get; set; }
 
+        List<string> steps { get; set; }
+
         IMember Assignee { get; set; }
     }
 }

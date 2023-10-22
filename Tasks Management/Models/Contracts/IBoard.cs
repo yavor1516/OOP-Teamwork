@@ -9,6 +9,6 @@ namespace Tasks_Management.Models.Contracts
     public interface IBoard :IHasName
     {
         IList<ITask> Tasks { get; }
-        IList<IActivityHistory> History { get; }
+       IActivityHistory History { get; }
     }
 }

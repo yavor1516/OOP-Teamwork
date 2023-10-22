@@ -27,7 +27,8 @@ namespace Tasks_Management.Models
         {
             this.name = name;
             this.History = history;
-        
+            this.Boards = new List<IBoard>();
+            this.Members = new List<IMember>();
         }
 
         public string Name
@@ -39,9 +40,9 @@ namespace Tasks_Management.Models
                 name = value;
             }
         }
-        public IList<IMember> Members => members;
+        public IList<IMember> Members { get; set; }
 
-        public IList<IBoard> Boards => boards;
+        public IList<IBoard> Boards {get;set;}
 
         public IActivityHistory History {get;set;}
     }

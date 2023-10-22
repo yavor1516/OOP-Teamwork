@@ -6,7 +6,7 @@ namespace Tasks_Management.Models
 {
     public abstract class Task : ITask
     {
-        public int UniqueID { get; }
+        public int UniqueID { get; set; }
 
         public const int NameMinLength = 10;
         public const int NameMaxLength = 50;
@@ -22,6 +22,7 @@ namespace Tasks_Management.Models
         private string description;
         private List<Comment> comments;
 
+
         public Task(int id, string title, string description, IActivityHistory history)
         {
             UniqueID = id;
@@ -30,6 +31,7 @@ namespace Tasks_Management.Models
     
             this.comments = new List<Comment>();
             this.History = new ActivityHistory();
+            steps = new List<string>();
         }
 
         public virtual int Id
@@ -66,6 +68,7 @@ namespace Tasks_Management.Models
         public virtual TaskType Tasktype { get; set; }
 
         public virtual IMember Assignee { get; set; }
+        public List<string> steps { get; set; }
 
         public virtual void AddComment(IComment comment)
         {

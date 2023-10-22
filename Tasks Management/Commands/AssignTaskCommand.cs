@@ -24,7 +24,7 @@ namespace Tasks_Management.Commands
             return AssignTaskToMember(id, MemberFirstName, MemberLastName);
         }
 
-        private string AssignTaskToMember(int id,string firstNameMember,string lastNameMember)
+        public string AssignTaskToMember(int id,string firstNameMember,string lastNameMember)
         {
             ITask task = Repository.GetTask(id);
             IMember member = Repository.GetMember(firstNameMember, lastNameMember);

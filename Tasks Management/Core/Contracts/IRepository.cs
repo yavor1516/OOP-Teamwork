@@ -32,7 +32,7 @@ namespace Tasks_Management.Core.Contracts
         void AddMember (IMember member);
         void AddTeam (ITeam team);
 
-        void AddBoard (IBoard board);
+        void AddBoard (IBoard board,ITeam team);
         void AddTask(ITask task);
 
         void AddBug(IBug bug);

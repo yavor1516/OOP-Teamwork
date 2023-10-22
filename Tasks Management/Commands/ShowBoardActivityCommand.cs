@@ -28,7 +28,7 @@ namespace Tasks_Management.Commands
                 return ShowBoardActivity(boardName);
             }
 
-        private string ShowBoardActivity(string boardName)
+        public string ShowBoardActivity(string boardName)
         {
             IBoard board = Repository.GetBoard(boardName);
 
@@ -37,23 +37,23 @@ namespace Tasks_Management.Commands
                 throw new InvalidUserInputException($"Board {boardName} not found");
             }
 
-            IActivityHistory boardActivityHistory = new ActivityHistory();
+            board.History.Messages.Clear();
             
             foreach (ITask task in board.Tasks)
             {
-                foreach (string item in task.History.Messages)
+                for (int i = 0; i < task.History.Messages.Count; i++)
                 {
-                    boardActivityHistory.Messages.Add(item);
+                    board.History.Messages.Add(task.History.Messages[i]);
                 }
             }
 
-            if (boardActivityHistory.Messages.Count == 0)
+            if (board.History.Messages.Count == 0)
             {
                 return $"Board {boardName} has no activity.";
             }
             else
             {
-                string activityList = string.Join(", ", boardActivityHistory);
+                string activityList = string.Join(", ", board.History.Messages);
                 return $"Board {boardName} includes {activityList}";
             }
         }

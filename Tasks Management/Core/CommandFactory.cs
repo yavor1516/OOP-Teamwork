@@ -50,8 +50,8 @@ namespace Tasks_Management.Core
                     return new ShowAllTeamBoardsCommand(commandParameters, repository);
                 case CommandType.ShowBoardActivity:
                     return new ShowBoardActivityCommand(commandParameters, repository); //todo
-                case CommandType.CreateBoardTask:
-                    throw new NotImplementedException();
+                case CommandType.AddSteps:
+                    return new AddStepsToCommand(commandParameters, repository);
                 case CommandType.ChangeBug:
                     return new ChangeBugCommand(commandParameters, repository);
                 case CommandType.ChangeStory:
@@ -68,6 +68,16 @@ namespace Tasks_Management.Core
                     return new CreateTaskCommand(commandParameters, repository);
                 case CommandType.ShowTaskHistory:
                     return new TaskHistoryCommand(commandParameters, repository);
+                case CommandType.AssignCriticalBugs:
+                    return new AssignCriticalBugsCommand(commandParameters, repository);//todo
+                case CommandType.ListTask:
+                    return new ListTaskCommand(commandParameters, repository);//todo
+                case CommandType.List:
+                    return new ListCommand(commandParameters, repository);//todo
+                case CommandType.ListAllAssigneesTasks:
+                    return new ListTaskWithAssignee(commandParameters, repository); //todo
+                case CommandType.ShowTaskInfo:
+                    return new ShowTaskInfoCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType}  doesn't exist!");
             }
