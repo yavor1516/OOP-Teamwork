@@ -11,5 +11,7 @@ namespace Tasks_Management.Models.Contracts
     {
         int Rating { get; set; }
         FeedbackStatus Status { get; set; }
+
+
     }
 }

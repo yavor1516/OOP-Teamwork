@@ -163,11 +163,12 @@ namespace Tasks_Management.Core
             return new Board(name);
         }
 
-        public void AddBoard(IBoard board)
+        public void AddBoard(IBoard board,ITeam team)
         {
             if (!boards.Contains(board))
             {
                 boards.Add(board);
+                team.Boards.Add(board);
             }
         }
         public void AddTask(ITask task )

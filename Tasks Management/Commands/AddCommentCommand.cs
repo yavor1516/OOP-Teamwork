@@ -44,6 +44,7 @@ namespace Tasks_Management.Commands
             IComment comment = new Comment(content,author);
 
             task.AddComment(comment);
+            task.History.Messages.Add($"{author} just a comment: {content}");
 
             return $"Comment added to task {task.Title}: {content}";
         }

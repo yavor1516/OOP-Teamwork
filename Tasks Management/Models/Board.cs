@@ -14,19 +14,20 @@ namespace Tasks_Management.Models
         public const string InvalidBoardError = "Board name must be between 5 and 10 characters";
         private string name;
         private IList<ITask> tasks;
-        private IList<Contracts.IActivityHistory> history;
 
         public Board(string name)
         {
             Name = name;
             tasks = new List<ITask>();
-            history = new List<Contracts.IActivityHistory>();
+            this.History = new ActivityHistory();
+            
+
         }
 
         public IList<ITask> Tasks => tasks;
 
-        public IList<Contracts.IActivityHistory> History => history;
-
+        // public IList<Contracts.IActivityHistory> History => history;
+        public IActivityHistory History { get; set; }
         public string Name
         {
             get
@@ -41,6 +42,6 @@ namespace Tasks_Management.Models
             }
         }
 
-
+      
     }
 }

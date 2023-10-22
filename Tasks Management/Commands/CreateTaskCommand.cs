@@ -32,42 +32,45 @@ namespace Tasks_Management.Commands
             switch (commandType)
             {
                 case TaskType.Bug:
-                    if (this.CommandParameters.Count != 6)
+                    if (this.CommandParameters.Count != 7)
                     {
                         throw new InvalidUserInputException($"Invalid number of arguments. Usage:CreateTask Bug [title] [description] [status] [priority] [severity]");
                     }
                     BugStatus status = ParseBugStatusType(this.CommandParameters[3]);
                     priority = ParsePriorityType(this.CommandParameters[4]);
                     Severity severity = ParseSeverityType(this.CommandParameters[5]);
+                    IBoard board = this.Repository.GetBoard(this.CommandParameters[6]);
                     IActivityHistory history = new ActivityHistory();
                     Bug bug = new Bug(id, Title, Description, status, priority, severity, history);
                     bug.Tasktype = TaskType.Bug;
-                    return this.CreateBug(bug);
+                    return this.CreateBug(bug,board);
 
                 case TaskType.Story:
-                    if (this.CommandParameters.Count != 6)
+                    if (this.CommandParameters.Count != 7)
                     {
                         throw new InvalidUserInputException($"Invalid number of arguments. Usage:CreateTask Story [title] [description] [status] [priority] [size]");
                     }
                     StoryStatus storyStatus = ParseStoryStatusType(this.CommandParameters[3]);
                     priority = ParsePriorityType(this.CommandParameters[4]);
                     Size size = ParseSizeType(this.CommandParameters[5]);
+                    board = this.Repository.GetBoard(this.CommandParameters[6]);
                     history = new ActivityHistory();
                     Story story = new Story(id, Title, Description, storyStatus, priority, size, history);
                     story.Tasktype = TaskType.Story;
-                    return this.CreateStory(story);
+                    return this.CreateStory(story, board);
 
                 case TaskType.Feedback:
-                    if (this.CommandParameters.Count != 5)
+                    if (this.CommandParameters.Count != 6)
                     {
                         throw new InvalidUserInputException($"Invalid number of arguments. Usage:CreateTask Feedback [title] [description] [status] [rating]");
                     }
                     FeedbackStatus feedbackStatus = ParseFeedbackStatusType(this.CommandParameters[3]);
                     int rating = int.Parse(this.CommandParameters[4]);
+                    board = this.Repository.GetBoard(this.CommandParameters[5]);
                     history = new ActivityHistory();
                     Feedback feedback = new Feedback(id, Title, Description, feedbackStatus, rating, history);
                     feedback.Tasktype = TaskType.Feedback;
-                    return this.CreateFeedBack(feedback);
+                    return this.CreateFeedBack(feedback,board);
 
                 default:
                     throw new ArgumentException("Default");
@@ -133,27 +136,33 @@ namespace Tasks_Management.Commands
             this.Repository.AddTask(task);
             return string.Format($"Task {task.Title} created successfully!");
         }
-        private string CreateBug(Bug bug)
+        private string CreateBug(Bug bug,IBoard board)
         {
-            bug.History.Messages.Add("Bug has been created");
+            bug.History.Messages.Add($"Bug has been created and added to {board.Name}");
+            board.History.Messages.Add($"{bug.Title} has been assigned to the board");
             this.Repository.AddBug(bug);
             CreateTask(bug);
+            board.Tasks.Add(bug);
             return string.Format($"Bug with title: {bug.Title} created successfully!");
 
         }
-        private string CreateStory(Story story)
+        private string CreateStory(Story story,IBoard board)
         {
             story.History.Messages.Add("Story has been created");
+            board.History.Messages.Add($"{story.Title} has been assigned to the board");
             this.Repository.AddStory(story);
             CreateTask(story);
+            board.Tasks.Add(story);
             return string.Format($"Story with title :{story.Title} created successfully!");
         }
 
-        private string CreateFeedBack(Feedback feedback)
+        private string CreateFeedBack(Feedback feedback,IBoard board)
         {
             feedback.History.Messages.Add("Feedback has been created");
+            board.History.Messages.Add($"{feedback.Title} has been assigned to the board");
             this.Repository.AddFeedBack(feedback);
             CreateTask(feedback);
+            board.Tasks.Add(feedback);
             return string.Format($"Feedback with title :{feedback.Title} created successfully!");
         }
     }

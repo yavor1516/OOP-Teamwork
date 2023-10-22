@@ -38,7 +38,8 @@ namespace Tasks_Management.Commands
                 throw new InvalidUserInputException($"Board {boardName} already exist. Choose a different name!");
             }
             IBoard board = this.Repository.CreateBoard(boardName);
-            this.Repository.AddBoard(board);
+            this.Repository.AddBoard(board,team);
+            team.History.Messages.Add($"board: {board.Name} just added to team: {team.Name}");
             return string.Format($"Board {boardName} registered successfully!", boardName);
         }
 

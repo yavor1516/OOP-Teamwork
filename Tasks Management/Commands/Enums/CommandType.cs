@@ -23,6 +23,12 @@ namespace Tasks_Management.Commands.Enums
         AddComment,
         CreateTask,
         ShowTaskHistory,
-       
+        AssignCriticalBugs,
+        ListTask,
+        List,
+        ListAllAssigneesTasks,
+        AddSteps,
+        ShowTaskInfo
+
     }
 }

@@ -15,7 +15,7 @@ namespace Tasks_Management.Models.Contracts
 
         Severity Severity { get; set; }
         BugStatus Status { get; set; }
-        IMember Assignee { get; }
+        IMember Assignee { get; set; }
       
 
     }

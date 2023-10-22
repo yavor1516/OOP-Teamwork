@@ -11,7 +11,7 @@ namespace Tasks_Management.Models.Contracts
     {
         Priority Priority { get; set; }
         Size Size { get; set;}
-        IMember Assignee { get; }
+
         StoryStatus Status { get; set; }
 
     }

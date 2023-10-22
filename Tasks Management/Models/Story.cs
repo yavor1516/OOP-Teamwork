@@ -14,10 +14,10 @@ namespace Tasks_Management.Models
             : base(id, Title, Description, history)
         {
             
-            Validator.ValidateStoryStatus(Status, "Invalid story status.");
-            this.Status = Status;
+            Validator.ValidateStoryStatus(status, "Invalid story status.");
+            this.Status = status;
             Validator.ValidatePriority(priority, "Invalid priority.");
-            Priority = priority;
+            this.Priority = priority;
             Validator.ValidateSize(size, "Invalid size.");
             Size = size;
         }
@@ -26,7 +26,7 @@ namespace Tasks_Management.Models
 
         public Size Size {get;set;}
 
-        public IMember Assignee { get; set;}
+
 
         public StoryStatus Status { get; set; }
     }

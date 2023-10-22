@@ -31,7 +31,7 @@ namespace Tasks_Management.Models
 
         public BugStatus Status { get; set; }
 
-        public IMember Assignee { get; }
+
 
        
     }
